@@ -16,7 +16,9 @@ jobs:
 
       - name: Install CookCLI
         run: |
-          curl -fsSL https://raw.githubusercontent.com/cooklang/CookCLI/main/install.sh | sh
+            mkdir -p $HOME/.local/bin
+            curl -L https://github.com/cooklang/cookcli/releases/latest/download/cook-x86_64-unknown-linux-musl.tar.gz | tar -xz -C $HOME/.local/bin
+            chmod +x $HOME/.local/bin/cook
 
       - name: Build Web Static Site
         run: |
