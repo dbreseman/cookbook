@@ -17,11 +17,10 @@ jobs:
       - name: Install CookCLI
         run: |
           curl -fsSL https://raw.githubusercontent.com/cooklang/CookCLI/main/install.sh | sh
-          echo "$HOME/.local/bin" >> $GITHUB_PATH
 
       - name: Build Web Static Site
         run: |
-          cook build web --output _site
+          $HOME/.local/bin/cook build web --output _site
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
