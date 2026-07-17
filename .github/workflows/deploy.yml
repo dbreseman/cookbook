@@ -22,8 +22,8 @@ jobs:
 
       - name: Build Web Static Site
         run: |
-          $HOME/.local/bin/cook build web --output _site
-
+          $HOME/.local/bin/cook build web _site
+          
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
