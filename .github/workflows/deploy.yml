@@ -1,0 +1,29 @@
+name: Build and Deploy Cookbook
+
+on:
+  push:
+    branches: [ "main" ]
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v7
+
+      - name: Install CookCLI
+        run: |
+          curl -fsSL https://raw.githubusercontent.com/cooklang/CookCLI/main/install.sh | sh
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+
+      - name: Build Web Static Site
+        run: |
+          cook build web --output _site
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: _site
