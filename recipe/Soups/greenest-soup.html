@@ -12,8 +12,9 @@
     <link href="../../static/css/output.css" rel="stylesheet">
     <link href="../../static/css/custom-styles.css" rel="stylesheet">
     <script>
-        // Check for saved theme preference or default to light
-        const theme = localStorage.getItem('theme') || 'light';
+        // Check for saved theme preference, or check for prefers-color-scheme, or default to light
+        const theme = localStorage.getItem('theme')
+            || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
         document.documentElement.classList.toggle('dark', theme === 'dark');
     </script>
     <style>
@@ -77,15 +78,19 @@
             border-color: #7c3aed;
         }
 
-        .dark .hover\\:text-gray-900:hover {
+        .dark .hover\:text-gray-900:hover {
             color: #f9fafb;
         }
 
-        .dark .hover\\:text-gray-800:hover {
+        .dark .hover\:text-gray-800:hover {
             color: #e5e7eb;
         }
 
-        .dark .hover\\:bg-gray-100:hover {
+        .dark .hover\:bg-gray-50:hover {
+            background-color: #374151;
+        }
+
+        .dark .hover\:bg-gray-100:hover {
             background-color: #374151;
         }
 
@@ -147,40 +152,40 @@
         }
 
         /* Dark mode hover states */
-        .dark .hover\\:bg-gradient-to-r:hover {
+        .dark .hover\:bg-gradient-to-r:hover {
             background: #374151 !important;
         }
 
-        .dark .hover\\:from-purple-50:hover,
-        .dark .hover\\:to-pink-50:hover {
+        .dark .hover\:from-purple-50:hover,
+        .dark .hover\:to-pink-50:hover {
             background: #374151 !important;
         }
 
-        .dark .hover\\:from-orange-100:hover,
-        .dark .hover\\:to-amber-100:hover {
+        .dark .hover\:from-orange-100:hover,
+        .dark .hover\:to-amber-100:hover {
             background: #374151 !important;
         }
 
-        .dark .hover\\:from-purple-100:hover,
-        .dark .hover\\:to-pink-100:hover {
+        .dark .hover\:from-purple-100:hover,
+        .dark .hover\:to-pink-100:hover {
             background: #374151 !important;
         }
 
-        .dark a.hover\\:bg-gradient-to-r:hover {
+        .dark a.hover\:bg-gradient-to-r:hover {
             background: #374151 !important;
             color: #e5e7eb !important;
         }
 
         /* Fix for navigation pill hover states */
-        .dark a[href="../../"].hover\\:bg-gradient-to-r:hover {
+        .dark a[href="../../"].hover\:bg-gradient-to-r:hover {
             background: #374151 !important;
         }
 
-        .dark .hover\\:text-orange-700:hover {
+        .dark .hover\:text-orange-700:hover {
             color: #fb923c !important;
         }
 
-        .dark .hover\\:text-purple-700:hover {
+        .dark .hover\:text-purple-700:hover {
             color: #a78bfa !important;
         }
 
@@ -204,7 +209,7 @@
             background-color: #4b5563;
         }
 
-        .dark .hover\\:bg-gray-300:hover {
+        .dark .hover\:bg-gray-300:hover {
             background-color: #6b7280;
         }
 
@@ -221,7 +226,7 @@
             color: #ef4444;
         }
 
-        .dark .hover\\:text-red-700:hover {
+        .dark .hover\:text-red-700:hover {
             color: #dc2626;
         }
 
@@ -293,7 +298,7 @@
         }
 
         /* Override inline hover styles in search results */
-        .dark #search-results a.hover\\:bg-gradient-to-r:hover {
+        .dark #search-results a.hover\:bg-gradient-to-r:hover {
             background: #374151 !important;
         }
 
@@ -472,7 +477,7 @@
             }
 
             /* Hide navigation and non-essential elements */
-            nav, #search-container, #search-input, #search-results, .print\\:hidden, .breadcrumb {
+            nav, #search-container, #search-input, #search-results, .print\:hidden, .breadcrumb {
                 display: none !important;
             }
 
@@ -515,7 +520,7 @@
             }
 
             /* Page breaks */
-            .md\\:col-span-1, .md\\:col-span-2 {
+            .md\:col-span-1, .md\:col-span-2 {
                 page-break-inside: avoid;
                 width: 100% !important;
             }
@@ -575,19 +580,19 @@
             }
 
             /* Print-specific flexbox utilities */
-            .print\\:flex-row {
+            .print\:flex-row {
                 flex-direction: row !important;
             }
 
-            .print\\:items-center {
+            .print\:items-center {
                 align-items: center !important;
             }
 
-            .print\\:block {
+            .print\:block {
                 display: block !important;
             }
 
-            .print\\:text-2xl {
+            .print\:text-2xl {
                 font-size: 1.5rem !important;
             }
 
@@ -777,7 +782,7 @@
                         <input type="text"
                                id="search-input"
                                placeholder="Search recipes..."
-                               class="w-full pl-10 pr-4 py-2.5 bg-white border-2 border-purple-200 rounded-xl text-gray-900 placeholder-gray-500 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 focus:outline-none transition-all shadow-md hover:shadow-lg">
+                               class="w-full pl-10 pr-4 py-2.5 bg-white border-2 border-purple-200 rounded-xl text-gray-900 placeholder-gray-500 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 focus:outline-hidden transition-all shadow-md hover:shadow-lg">
                         <div id="search-results"
                              class="absolute top-full mt-2 w-full bg-white border-2 border-purple-200 rounded-xl shadow-xl hidden max-h-96 overflow-y-auto"
                              style="z-index: 9999;">
@@ -845,7 +850,7 @@
 
         <main>
             
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Recipe","description":"Herby broccoli soup pureed silky smooth with cashews.","image":"https://www.recipetineats.com/tachyon/2022/07/Green-Goddess-Soup_0-2.jpg","name":"Greenest Broccoli Soup","recipeIngredient":["1 tsp baking soda (6g)","1 tsp black pepper (3g)","4 c broccoli (450g, roughly chopped)","15 cashews (soaked in hot water)","1 tsp chicken bouillon paste","extra-virgin olive oil","1 tbsp fish sauce (15ml)","2 cloves garlic cloves (10g, grated)","1.5 c leek (170g, washed and chopped, divided)","lemon","2 c parsley (30g, chopped)","4 tsp salt (12g, divided)","1 c snap peas (115g, trimmed)","vegetable oil","water"],"recipeInstructions":[{"@type":"HowToStep","text":"In a large pot, boil 12 cups of water, 1 tablespoon of the salt, and baking soda until evenly distributed. Bring the liquid to a boil over high heat."},{"@type":"HowToStep","text":"Blanch broccoli and snap peas until vibrant green and tender, about 6 minutes. Use a slotted spoon to remove the greens and shock in ice water."},{"@type":"HowToStep","text":"Return the water to a boil, then add the sliced dark green tops of the leek and the parsley. Cook until vibrant green and wilted, about 1 to 2 minutes longer. Drain the vegetables and discard the cooking water."},{"@type":"HowToStep","text":"In the empty pot, heat the remaining 3 tablespoons of vegetable oil and black pepper over medium-low heat until the pepper begins to sizzle, about 30 seconds."},{"@type":"HowToStep","text":"Add the white and light green chopped parts of the leek and the remaining 1 teaspoon of salt. Cook, stirring occasionally, until the vegetables soften, about 3 minutes."},{"@type":"HowToStep","text":"Stir in garlic cloves and chicken bouillon paste and cook until fragrant, about 30 seconds."},{"@type":"HowToStep","text":"Stir in fish sauce and cook until slightly evaporated, about 15 seconds."},{"@type":"HowToStep","text":"Transfer the soup base, blanched vegetables, and cashews to a blender. Add 2 cups of cold water and blend on high speed until mostly smooth, 30 to 60 seconds. Return the puree to the heat and heat through, about 1 minute."},{"@type":"HowToStep","text":"Remove the soup from the heat. Season with salt and black pepper to taste."},{"@type":"HowToStep","text":"Ladle the soup into individual bowls. Drizzle with extra-virgin olive oil and a squeeze of lemon."}],"recipeYield":"5"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Recipe","description":"Herby broccoli soup pureed silky smooth with cashews.","image":"https://www.recipetineats.com/tachyon/2022/07/Green-Goddess-Soup_0-2.jpg","name":"Greenest Broccoli Soup","recipeIngredient":["1 tsp baking soda (6g)","1 tsp black pepper (3g)","4 cups broccoli (450g, roughly chopped)","15 cashews (soaked in hot water)","1 tsp chicken bouillon paste","extra-virgin olive oil","1 tbsp fish sauce (15ml)","2 cloves garlic cloves (10g, grated)","1.5 cups leek (170g, washed and chopped, divided)","lemon","2 cups parsley (30g, chopped)","4 tsp salt (12g, divided)","1 cup snap peas (115g, trimmed)","vegetable oil","water"],"recipeInstructions":[{"@type":"HowToStep","text":"In a large pot, boil 12 cups of water, 1 tablespoon of the salt, and baking soda until evenly distributed. Bring the liquid to a boil over high heat."},{"@type":"HowToStep","text":"Blanch broccoli and snap peas until vibrant green and tender, about 6 minutes. Use a slotted spoon to remove the greens and shock in ice water."},{"@type":"HowToStep","text":"Return the water to a boil, then add the sliced dark green tops of the leek and the parsley. Cook until vibrant green and wilted, about 1 to 2 minutes longer. Drain the vegetables and discard the cooking water."},{"@type":"HowToStep","text":"In the empty pot, heat the remaining 3 tablespoons of vegetable oil and black pepper over medium-low heat until the pepper begins to sizzle, about 30 seconds."},{"@type":"HowToStep","text":"Add the white and light green chopped parts of the leek and the remaining 1 teaspoon of salt. Cook, stirring occasionally, until the vegetables soften, about 3 minutes."},{"@type":"HowToStep","text":"Stir in garlic cloves and chicken bouillon paste and cook until fragrant, about 30 seconds."},{"@type":"HowToStep","text":"Stir in fish sauce and cook until slightly evaporated, about 15 seconds."},{"@type":"HowToStep","text":"Transfer the soup base, blanched vegetables, and cashews to a blender. Add 2 cups of cold water and blend on high speed until mostly smooth, 30 to 60 seconds. Return the puree to the heat and heat through, about 1 minute."},{"@type":"HowToStep","text":"Remove the soup from the heat. Season with salt and black pepper to taste."},{"@type":"HowToStep","text":"Ladle the soup into individual bowls. Drizzle with extra-virgin olive oil and a squeeze of lemon."}],"recipeYield":"5"}</script>
 
 <div>
     <nav class="mb-4 breadcrumb print:hidden">
@@ -991,7 +996,7 @@
                                         <span class="font-medium">baking soda</span>
                                     
                                     
-                                        <span class="text-sm text-gray-600 italic ml-1 truncate max-w-xs inline-block" title="6g" aria-label="preparation: 6g">(6g)</span>
+                                        <span class="text-sm text-gray-600 italic ml-1 break-words" aria-label="preparation: 6g">(6g)</span>
                                     
                                 </div>
                                 <span class="text-orange-700 font-semibold ml-2">
@@ -1006,11 +1011,11 @@
                                         <span class="font-medium">broccoli</span>
                                     
                                     
-                                        <span class="text-sm text-gray-600 italic ml-1 truncate max-w-xs inline-block" title="450g, roughly chopped" aria-label="preparation: 450g, roughly chopped">(450g, roughly chopped)</span>
+                                        <span class="text-sm text-gray-600 italic ml-1 break-words" aria-label="preparation: 450g, roughly chopped">(450g, roughly chopped)</span>
                                     
                                 </div>
                                 <span class="text-orange-700 font-semibold ml-2">
-                                    4 c
+                                    4 cups
                                     
                                 </span>
                             </li>
@@ -1021,11 +1026,11 @@
                                         <span class="font-medium">leek</span>
                                     
                                     
-                                        <span class="text-sm text-gray-600 italic ml-1 truncate max-w-xs inline-block" title="170g, washed and chopped, divided" aria-label="preparation: 170g, washed and chopped, divided">(170g, washed and chopped, divided)</span>
+                                        <span class="text-sm text-gray-600 italic ml-1 break-words" aria-label="preparation: 170g, washed and chopped, divided">(170g, washed and chopped, divided)</span>
                                     
                                 </div>
                                 <span class="text-orange-700 font-semibold ml-2">
-                                    1.5 c
+                                    1.5 cups
                                     
                                 </span>
                             </li>
@@ -1036,11 +1041,11 @@
                                         <span class="font-medium">parsley</span>
                                     
                                     
-                                        <span class="text-sm text-gray-600 italic ml-1 truncate max-w-xs inline-block" title="30g, chopped" aria-label="preparation: 30g, chopped">(30g, chopped)</span>
+                                        <span class="text-sm text-gray-600 italic ml-1 break-words" aria-label="preparation: 30g, chopped">(30g, chopped)</span>
                                     
                                 </div>
                                 <span class="text-orange-700 font-semibold ml-2">
-                                    2 c
+                                    2 cups
                                     
                                 </span>
                             </li>
@@ -1051,7 +1056,7 @@
                                         <span class="font-medium">salt</span>
                                     
                                     
-                                        <span class="text-sm text-gray-600 italic ml-1 truncate max-w-xs inline-block" title="12g, divided" aria-label="preparation: 12g, divided">(12g, divided)</span>
+                                        <span class="text-sm text-gray-600 italic ml-1 break-words" aria-label="preparation: 12g, divided">(12g, divided)</span>
                                     
                                 </div>
                                 <span class="text-orange-700 font-semibold ml-2">
@@ -1066,11 +1071,11 @@
                                         <span class="font-medium">snap peas</span>
                                     
                                     
-                                        <span class="text-sm text-gray-600 italic ml-1 truncate max-w-xs inline-block" title="115g, trimmed" aria-label="preparation: 115g, trimmed">(115g, trimmed)</span>
+                                        <span class="text-sm text-gray-600 italic ml-1 break-words" aria-label="preparation: 115g, trimmed">(115g, trimmed)</span>
                                     
                                 </div>
                                 <span class="text-orange-700 font-semibold ml-2">
-                                    1 c
+                                    1 cup
                                     
                                 </span>
                             </li>
@@ -1105,7 +1110,7 @@
                                         <span class="font-medium">black pepper</span>
                                     
                                     
-                                        <span class="text-sm text-gray-600 italic ml-1 truncate max-w-xs inline-block" title="3g" aria-label="preparation: 3g">(3g)</span>
+                                        <span class="text-sm text-gray-600 italic ml-1 break-words" aria-label="preparation: 3g">(3g)</span>
                                     
                                 </div>
                                 <span class="text-orange-700 font-semibold ml-2">
@@ -1134,7 +1139,7 @@
                                         <span class="font-medium">fish sauce</span>
                                     
                                     
-                                        <span class="text-sm text-gray-600 italic ml-1 truncate max-w-xs inline-block" title="15ml" aria-label="preparation: 15ml">(15ml)</span>
+                                        <span class="text-sm text-gray-600 italic ml-1 break-words" aria-label="preparation: 15ml">(15ml)</span>
                                     
                                 </div>
                                 <span class="text-orange-700 font-semibold ml-2">
@@ -1149,7 +1154,7 @@
                                         <span class="font-medium">garlic cloves</span>
                                     
                                     
-                                        <span class="text-sm text-gray-600 italic ml-1 truncate max-w-xs inline-block" title="10g, grated" aria-label="preparation: 10g, grated">(10g, grated)</span>
+                                        <span class="text-sm text-gray-600 italic ml-1 break-words" aria-label="preparation: 10g, grated">(10g, grated)</span>
                                     
                                 </div>
                                 <span class="text-orange-700 font-semibold ml-2">
@@ -1216,7 +1221,7 @@
                                         <span class="font-medium">cashews</span>
                                     
                                     
-                                        <span class="text-sm text-gray-600 italic ml-1 truncate max-w-xs inline-block" title="soaked in hot water" aria-label="preparation: soaked in hot water">(soaked in hot water)</span>
+                                        <span class="text-sm text-gray-600 italic ml-1 break-words" aria-label="preparation: soaked in hot water">(soaked in hot water)</span>
                                     
                                 </div>
                                 <span class="text-orange-700 font-semibold ml-2">
@@ -1349,11 +1354,11 @@
                                                         </span>
                                                     
                                                         <span class="inline-block mr-3">
-                                                            salt: 4 tsp <span class="italic text-gray-600 truncate max-w-[200px] inline-block align-bottom" title="12g, divided" aria-label="preparation: 12g, divided">(12g, divided)</span>,
+                                                            salt: 4 tsp <span class="italic text-gray-600 break-words" aria-label="preparation: 12g, divided">(12g, divided)</span>,
                                                         </span>
                                                     
                                                         <span class="inline-block mr-3">
-                                                            baking soda: 1 tsp <span class="italic text-gray-600 truncate max-w-[200px] inline-block align-bottom" title="6g" aria-label="preparation: 6g">(6g)</span>
+                                                            baking soda: 1 tsp <span class="italic text-gray-600 break-words" aria-label="preparation: 6g">(6g)</span>
                                                         </span>
                                                     
                                                 </div>
@@ -1386,11 +1391,11 @@
                                                 <div class="text-sm text-gray-600 mt-2 pl-4 border-l-2 border-orange-300">
                                                     
                                                         <span class="inline-block mr-3">
-                                                            broccoli: 4 c <span class="italic text-gray-600 truncate max-w-[200px] inline-block align-bottom" title="450g, roughly chopped" aria-label="preparation: 450g, roughly chopped">(450g, roughly chopped)</span>,
+                                                            broccoli: 4 cups <span class="italic text-gray-600 break-words" aria-label="preparation: 450g, roughly chopped">(450g, roughly chopped)</span>,
                                                         </span>
                                                     
                                                         <span class="inline-block mr-3">
-                                                            snap peas: 1 c <span class="italic text-gray-600 truncate max-w-[200px] inline-block align-bottom" title="115g, trimmed" aria-label="preparation: 115g, trimmed">(115g, trimmed)</span>
+                                                            snap peas: 1 cup <span class="italic text-gray-600 break-words" aria-label="preparation: 115g, trimmed">(115g, trimmed)</span>
                                                         </span>
                                                     
                                                 </div>
@@ -1423,11 +1428,11 @@
                                                 <div class="text-sm text-gray-600 mt-2 pl-4 border-l-2 border-orange-300">
                                                     
                                                         <span class="inline-block mr-3">
-                                                            leek: 1.5 c <span class="italic text-gray-600 truncate max-w-[200px] inline-block align-bottom" title="170g, washed and chopped, divided" aria-label="preparation: 170g, washed and chopped, divided">(170g, washed and chopped, divided)</span>,
+                                                            leek: 1.5 cups <span class="italic text-gray-600 break-words" aria-label="preparation: 170g, washed and chopped, divided">(170g, washed and chopped, divided)</span>,
                                                         </span>
                                                     
                                                         <span class="inline-block mr-3">
-                                                            parsley: 2 c <span class="italic text-gray-600 truncate max-w-[200px] inline-block align-bottom" title="30g, chopped" aria-label="preparation: 30g, chopped">(30g, chopped)</span>
+                                                            parsley: 2 cups <span class="italic text-gray-600 break-words" aria-label="preparation: 30g, chopped">(30g, chopped)</span>
                                                         </span>
                                                     
                                                 </div>
@@ -1472,7 +1477,7 @@
                                                         </span>
                                                     
                                                         <span class="inline-block mr-3">
-                                                            black pepper: 1 tsp <span class="italic text-gray-600 truncate max-w-[200px] inline-block align-bottom" title="3g" aria-label="preparation: 3g">(3g)</span>
+                                                            black pepper: 1 tsp <span class="italic text-gray-600 break-words" aria-label="preparation: 3g">(3g)</span>
                                                         </span>
                                                     
                                                 </div>
@@ -1542,7 +1547,7 @@
                                                 <div class="text-sm text-gray-600 mt-2 pl-4 border-l-2 border-orange-300">
                                                     
                                                         <span class="inline-block mr-3">
-                                                            garlic cloves: 2 cloves <span class="italic text-gray-600 truncate max-w-[200px] inline-block align-bottom" title="10g, grated" aria-label="preparation: 10g, grated">(10g, grated)</span>,
+                                                            garlic cloves: 2 cloves <span class="italic text-gray-600 break-words" aria-label="preparation: 10g, grated">(10g, grated)</span>,
                                                         </span>
                                                     
                                                         <span class="inline-block mr-3">
@@ -1577,7 +1582,7 @@
                                                 <div class="text-sm text-gray-600 mt-2 pl-4 border-l-2 border-orange-300">
                                                     
                                                         <span class="inline-block mr-3">
-                                                            fish sauce: 1 tbsp <span class="italic text-gray-600 truncate max-w-[200px] inline-block align-bottom" title="15ml" aria-label="preparation: 15ml">(15ml)</span>
+                                                            fish sauce: 1 tbsp <span class="italic text-gray-600 break-words" aria-label="preparation: 15ml">(15ml)</span>
                                                         </span>
                                                     
                                                 </div>
@@ -1620,7 +1625,7 @@
                                                 <div class="text-sm text-gray-600 mt-2 pl-4 border-l-2 border-orange-300">
                                                     
                                                         <span class="inline-block mr-3">
-                                                            cashews: 15 <span class="italic text-gray-600 truncate max-w-[200px] inline-block align-bottom" title="soaked in hot water" aria-label="preparation: soaked in hot water">(soaked in hot water)</span>,
+                                                            cashews: 15 <span class="italic text-gray-600 break-words" aria-label="preparation: soaked in hot water">(soaked in hot water)</span>,
                                                         </span>
                                                     
                                                         <span class="inline-block mr-3">
@@ -1721,7 +1726,7 @@
 </div>
 
 <script id="cooking-mode-data" type="application/json">
-{"image":"https://www.recipetineats.com/tachyon/2022/07/Green-Goddess-Soup_0-2.jpg","name":"Greenest Broccoli Soup","scale":1.0,"sections":[{"ingredients":[{"name":"baking soda","note":"6g","quantity":"1","unit":"tsp"},{"name":"broccoli","note":"450g, roughly chopped","quantity":"4","unit":"c"},{"name":"leek","note":"170g, washed and chopped, divided","quantity":"1.5","unit":"c"},{"name":"parsley","note":"30g, chopped","quantity":"2","unit":"c"},{"name":"salt","note":"12g, divided","quantity":"4","unit":"tsp"},{"name":"snap peas","note":"115g, trimmed","quantity":"1","unit":"c"},{"name":"water","note":null,"quantity":null,"unit":null}],"name":"Vegetables","stepOffset":0,"steps":[{"globalNumber":1,"image":null,"ingredients":[{"name":"water","note":null,"quantity":null,"unit":null},{"name":"salt","note":"12g, divided","quantity":"4","unit":"tsp"},{"name":"baking soda","note":"6g","quantity":"1","unit":"tsp"}],"number":1,"type":"step"},{"globalNumber":2,"image":null,"ingredients":[{"name":"broccoli","note":"450g, roughly chopped","quantity":"4","unit":"c"},{"name":"snap peas","note":"115g, trimmed","quantity":"1","unit":"c"}],"number":2,"type":"step"},{"globalNumber":3,"image":null,"ingredients":[{"name":"leek","note":"170g, washed and chopped, divided","quantity":"1.5","unit":"c"},{"name":"parsley","note":"30g, chopped","quantity":"2","unit":"c"}],"number":3,"type":"step"}]},{"ingredients":[{"name":"black pepper","note":"3g","quantity":"1","unit":"tsp"},{"name":"chicken bouillon paste","note":null,"quantity":"1","unit":"tsp"},{"name":"fish sauce","note":"15ml","quantity":"1","unit":"tbsp"},{"name":"garlic cloves","note":"10g, grated","quantity":"2","unit":"cloves"},{"name":"leek","note":null,"quantity":null,"unit":null},{"name":"salt","note":null,"quantity":null,"unit":null},{"name":"vegetable oil","note":null,"quantity":null,"unit":null}],"name":"Soup Base","stepOffset":3,"steps":[{"globalNumber":4,"image":null,"ingredients":[{"name":"vegetable oil","note":null,"quantity":null,"unit":null},{"name":"black pepper","note":"3g","quantity":"1","unit":"tsp"}],"number":1,"type":"step"},{"globalNumber":5,"image":null,"ingredients":[{"name":"leek","note":null,"quantity":null,"unit":null},{"name":"salt","note":null,"quantity":null,"unit":null}],"number":2,"type":"step"},{"globalNumber":6,"image":null,"ingredients":[{"name":"garlic cloves","note":"10g, grated","quantity":"2","unit":"cloves"},{"name":"chicken bouillon paste","note":null,"quantity":"1","unit":"tsp"}],"number":3,"type":"step"},{"globalNumber":7,"image":null,"ingredients":[{"name":"fish sauce","note":"15ml","quantity":"1","unit":"tbsp"}],"number":4,"type":"step"}]},{"ingredients":[{"name":"cashews","note":"soaked in hot water","quantity":"15","unit":null},{"name":"water","note":null,"quantity":null,"unit":null}],"name":"Puree","stepOffset":7,"steps":[{"globalNumber":8,"image":null,"ingredients":[{"name":"cashews","note":"soaked in hot water","quantity":"15","unit":null},{"name":"water","note":null,"quantity":null,"unit":null}],"number":1,"type":"step"}]},{"ingredients":[{"name":"black pepper","note":null,"quantity":null,"unit":null},{"name":"extra-virgin olive oil","note":null,"quantity":null,"unit":null},{"name":"lemon","note":null,"quantity":null,"unit":null},{"name":"salt","note":null,"quantity":null,"unit":null}],"name":"Assemble and Serve","stepOffset":8,"steps":[{"globalNumber":9,"image":null,"ingredients":[{"name":"salt","note":null,"quantity":null,"unit":null},{"name":"black pepper","note":null,"quantity":null,"unit":null}],"number":1,"type":"step"},{"globalNumber":10,"image":null,"ingredients":[{"name":"extra-virgin olive oil","note":null,"quantity":null,"unit":null},{"name":"lemon","note":null,"quantity":null,"unit":null}],"number":2,"type":"step"}]}]}
+{"image":"https://www.recipetineats.com/tachyon/2022/07/Green-Goddess-Soup_0-2.jpg","name":"Greenest Broccoli Soup","scale":1.0,"sections":[{"ingredients":[{"name":"baking soda","note":"6g","quantity":"1","unit":"tsp"},{"name":"broccoli","note":"450g, roughly chopped","quantity":"4","unit":"cups"},{"name":"leek","note":"170g, washed and chopped, divided","quantity":"1.5","unit":"cups"},{"name":"parsley","note":"30g, chopped","quantity":"2","unit":"cups"},{"name":"salt","note":"12g, divided","quantity":"4","unit":"tsp"},{"name":"snap peas","note":"115g, trimmed","quantity":"1","unit":"cup"},{"name":"water","note":null,"quantity":null,"unit":null}],"name":"Vegetables","stepOffset":0,"steps":[{"globalNumber":1,"image":null,"ingredients":[{"name":"water","note":null,"quantity":null,"unit":null},{"name":"salt","note":"12g, divided","quantity":"4","unit":"tsp"},{"name":"baking soda","note":"6g","quantity":"1","unit":"tsp"}],"number":1,"type":"step"},{"globalNumber":2,"image":null,"ingredients":[{"name":"broccoli","note":"450g, roughly chopped","quantity":"4","unit":"cups"},{"name":"snap peas","note":"115g, trimmed","quantity":"1","unit":"cup"}],"number":2,"type":"step"},{"globalNumber":3,"image":null,"ingredients":[{"name":"leek","note":"170g, washed and chopped, divided","quantity":"1.5","unit":"cups"},{"name":"parsley","note":"30g, chopped","quantity":"2","unit":"cups"}],"number":3,"type":"step"}]},{"ingredients":[{"name":"black pepper","note":"3g","quantity":"1","unit":"tsp"},{"name":"chicken bouillon paste","note":null,"quantity":"1","unit":"tsp"},{"name":"fish sauce","note":"15ml","quantity":"1","unit":"tbsp"},{"name":"garlic cloves","note":"10g, grated","quantity":"2","unit":"cloves"},{"name":"leek","note":null,"quantity":null,"unit":null},{"name":"salt","note":null,"quantity":null,"unit":null},{"name":"vegetable oil","note":null,"quantity":null,"unit":null}],"name":"Soup Base","stepOffset":3,"steps":[{"globalNumber":4,"image":null,"ingredients":[{"name":"vegetable oil","note":null,"quantity":null,"unit":null},{"name":"black pepper","note":"3g","quantity":"1","unit":"tsp"}],"number":1,"type":"step"},{"globalNumber":5,"image":null,"ingredients":[{"name":"leek","note":null,"quantity":null,"unit":null},{"name":"salt","note":null,"quantity":null,"unit":null}],"number":2,"type":"step"},{"globalNumber":6,"image":null,"ingredients":[{"name":"garlic cloves","note":"10g, grated","quantity":"2","unit":"cloves"},{"name":"chicken bouillon paste","note":null,"quantity":"1","unit":"tsp"}],"number":3,"type":"step"},{"globalNumber":7,"image":null,"ingredients":[{"name":"fish sauce","note":"15ml","quantity":"1","unit":"tbsp"}],"number":4,"type":"step"}]},{"ingredients":[{"name":"cashews","note":"soaked in hot water","quantity":"15","unit":null},{"name":"water","note":null,"quantity":null,"unit":null}],"name":"Puree","stepOffset":7,"steps":[{"globalNumber":8,"image":null,"ingredients":[{"name":"cashews","note":"soaked in hot water","quantity":"15","unit":null},{"name":"water","note":null,"quantity":null,"unit":null}],"number":1,"type":"step"}]},{"ingredients":[{"name":"black pepper","note":null,"quantity":null,"unit":null},{"name":"extra-virgin olive oil","note":null,"quantity":null,"unit":null},{"name":"lemon","note":null,"quantity":null,"unit":null},{"name":"salt","note":null,"quantity":null,"unit":null}],"name":"Assemble and Serve","stepOffset":8,"steps":[{"globalNumber":9,"image":null,"ingredients":[{"name":"salt","note":null,"quantity":null,"unit":null},{"name":"black pepper","note":null,"quantity":null,"unit":null}],"number":1,"type":"step"},{"globalNumber":10,"image":null,"ingredients":[{"name":"extra-virgin olive oil","note":null,"quantity":null,"unit":null},{"name":"lemon","note":null,"quantity":null,"unit":null}],"number":2,"type":"step"}]}]}
 </script>
 
 
@@ -1732,6 +1737,7 @@
         <footer class="mt-12 mb-6 text-center text-sm text-gray-500 print:hidden">
             Built with
             <a href="https://cooklang.org/cli/" class="text-orange-600 hover:text-orange-700 hover:underline" target="_blank" rel="noopener">CookCLI</a>
+            
         </footer>
         
     </div>

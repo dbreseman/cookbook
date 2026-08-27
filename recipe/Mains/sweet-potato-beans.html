@@ -12,8 +12,9 @@
     <link href="../../static/css/output.css" rel="stylesheet">
     <link href="../../static/css/custom-styles.css" rel="stylesheet">
     <script>
-        // Check for saved theme preference or default to light
-        const theme = localStorage.getItem('theme') || 'light';
+        // Check for saved theme preference, or check for prefers-color-scheme, or default to light
+        const theme = localStorage.getItem('theme')
+            || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
         document.documentElement.classList.toggle('dark', theme === 'dark');
     </script>
     <style>
@@ -77,15 +78,19 @@
             border-color: #7c3aed;
         }
 
-        .dark .hover\\:text-gray-900:hover {
+        .dark .hover\:text-gray-900:hover {
             color: #f9fafb;
         }
 
-        .dark .hover\\:text-gray-800:hover {
+        .dark .hover\:text-gray-800:hover {
             color: #e5e7eb;
         }
 
-        .dark .hover\\:bg-gray-100:hover {
+        .dark .hover\:bg-gray-50:hover {
+            background-color: #374151;
+        }
+
+        .dark .hover\:bg-gray-100:hover {
             background-color: #374151;
         }
 
@@ -147,40 +152,40 @@
         }
 
         /* Dark mode hover states */
-        .dark .hover\\:bg-gradient-to-r:hover {
+        .dark .hover\:bg-gradient-to-r:hover {
             background: #374151 !important;
         }
 
-        .dark .hover\\:from-purple-50:hover,
-        .dark .hover\\:to-pink-50:hover {
+        .dark .hover\:from-purple-50:hover,
+        .dark .hover\:to-pink-50:hover {
             background: #374151 !important;
         }
 
-        .dark .hover\\:from-orange-100:hover,
-        .dark .hover\\:to-amber-100:hover {
+        .dark .hover\:from-orange-100:hover,
+        .dark .hover\:to-amber-100:hover {
             background: #374151 !important;
         }
 
-        .dark .hover\\:from-purple-100:hover,
-        .dark .hover\\:to-pink-100:hover {
+        .dark .hover\:from-purple-100:hover,
+        .dark .hover\:to-pink-100:hover {
             background: #374151 !important;
         }
 
-        .dark a.hover\\:bg-gradient-to-r:hover {
+        .dark a.hover\:bg-gradient-to-r:hover {
             background: #374151 !important;
             color: #e5e7eb !important;
         }
 
         /* Fix for navigation pill hover states */
-        .dark a[href="../../"].hover\\:bg-gradient-to-r:hover {
+        .dark a[href="../../"].hover\:bg-gradient-to-r:hover {
             background: #374151 !important;
         }
 
-        .dark .hover\\:text-orange-700:hover {
+        .dark .hover\:text-orange-700:hover {
             color: #fb923c !important;
         }
 
-        .dark .hover\\:text-purple-700:hover {
+        .dark .hover\:text-purple-700:hover {
             color: #a78bfa !important;
         }
 
@@ -204,7 +209,7 @@
             background-color: #4b5563;
         }
 
-        .dark .hover\\:bg-gray-300:hover {
+        .dark .hover\:bg-gray-300:hover {
             background-color: #6b7280;
         }
 
@@ -221,7 +226,7 @@
             color: #ef4444;
         }
 
-        .dark .hover\\:text-red-700:hover {
+        .dark .hover\:text-red-700:hover {
             color: #dc2626;
         }
 
@@ -293,7 +298,7 @@
         }
 
         /* Override inline hover styles in search results */
-        .dark #search-results a.hover\\:bg-gradient-to-r:hover {
+        .dark #search-results a.hover\:bg-gradient-to-r:hover {
             background: #374151 !important;
         }
 
@@ -472,7 +477,7 @@
             }
 
             /* Hide navigation and non-essential elements */
-            nav, #search-container, #search-input, #search-results, .print\\:hidden, .breadcrumb {
+            nav, #search-container, #search-input, #search-results, .print\:hidden, .breadcrumb {
                 display: none !important;
             }
 
@@ -515,7 +520,7 @@
             }
 
             /* Page breaks */
-            .md\\:col-span-1, .md\\:col-span-2 {
+            .md\:col-span-1, .md\:col-span-2 {
                 page-break-inside: avoid;
                 width: 100% !important;
             }
@@ -575,19 +580,19 @@
             }
 
             /* Print-specific flexbox utilities */
-            .print\\:flex-row {
+            .print\:flex-row {
                 flex-direction: row !important;
             }
 
-            .print\\:items-center {
+            .print\:items-center {
                 align-items: center !important;
             }
 
-            .print\\:block {
+            .print\:block {
                 display: block !important;
             }
 
-            .print\\:text-2xl {
+            .print\:text-2xl {
                 font-size: 1.5rem !important;
             }
 
@@ -777,7 +782,7 @@
                         <input type="text"
                                id="search-input"
                                placeholder="Search recipes..."
-                               class="w-full pl-10 pr-4 py-2.5 bg-white border-2 border-purple-200 rounded-xl text-gray-900 placeholder-gray-500 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 focus:outline-none transition-all shadow-md hover:shadow-lg">
+                               class="w-full pl-10 pr-4 py-2.5 bg-white border-2 border-purple-200 rounded-xl text-gray-900 placeholder-gray-500 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 focus:outline-hidden transition-all shadow-md hover:shadow-lg">
                         <div id="search-results"
                              class="absolute top-full mt-2 w-full bg-white border-2 border-purple-200 rounded-xl shadow-xl hidden max-h-96 overflow-y-auto"
                              style="z-index: 9999;">
@@ -845,7 +850,7 @@
 
         <main>
             
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Recipe","description":"Roasted sweet potato halves stuffed with seasoned black beans, wilted spinach, queso fresco, and fresh guacamole.","image":"https://assets.epicurious.com/photos/58bdb21192eece36cc1d3f7e/1:1/w_2240,c_limit/_Stuffed-Sweet-Potatoes-03022017.jpg","name":"Stuffed Sweet Potatoes with Black Beans and Guacamole","recipeIngredient":["1 ripe avocado","400 g black beans (rinsed and drained)","1/4 tsp cayenne pepper","2 tbsp cilantro (chopped)","2 cloves garlic (crushed)","1/4 tsp ground cumin","1 tbsp lime juice (15ml)","1 oz queso fresco (28g, or feta)","1 medium red onions (coarsely chopped)","3/4 tsp salt","2 c spinach (55g)","2 medium sweet potatoes (500g)","3/4 c vegetable broth (180ml)","1 tbsp vegetable oil (15ml)"],"recipeInstructions":[{"@type":"HowToStep","text":"Preheat oven to 230°C (or preheat air fryer to 200°C)."},{"@type":"HowToStep","text":"Cut sweet potatoes in half lengthwise."},{"@type":"HowToStep","text":"Toss the sweet potato halves with vegetable oil, salt, cayenne pepper, and ground cumin."},{"@type":"HowToStep","text":"Arrange cut side up and roast for about 25 minutes until fork-tender (or air fry at 200°C for 18 to 20 minutes)."},{"@type":"HowToStep","text":"Heat remaining vegetable oil in a medium skillet over medium heat."},{"@type":"HowToStep","text":"Add red onions and half of garlic and cook, stirring, until onion starts to release moisture and turns translucent, 2 to 3 minutes."},{"@type":"HowToStep","text":"Add black beans, vegetable broth, salt, remaining 1/4 tsp cayenne pepper, and remaining 1/4 tsp ground cumin."},{"@type":"HowToStep","text":"Cook until liquid is reduced and beans soften, about 10 minutes."},{"@type":"HowToStep","text":"Mash avocado and the remaining crushed garlic with a fork until smooth."},{"@type":"HowToStep","text":"Stir in cilantro, lime juice, and salt to taste."},{"@type":"HowToStep","text":"Add spinach and remaining 1 tbsp lime juice to the bean mixture in the skillet."},{"@type":"HowToStep","text":"Continue to cook until spinach wilts, about 30 seconds."},{"@type":"HowToStep","text":"Using the back of a spoon, gently push down in the center of the sweet potato halves to create a divot."},{"@type":"HowToStep","text":"Spoon the bean mixture into the sweet potato halves, then top evenly with 2 tbsp of the prepared guacamole mixture, crumbled queso fresco, and remaining 1 tbsp chopped cilantro."}],"recipeYield":"2"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Recipe","description":"Roasted sweet potato halves stuffed with seasoned black beans, wilted spinach, queso fresco, and fresh guacamole.","image":"https://assets.epicurious.com/photos/58bdb21192eece36cc1d3f7e/1:1/w_2240,c_limit/_Stuffed-Sweet-Potatoes-03022017.jpg","name":"Stuffed Sweet Potatoes with Black Beans and Guacamole","recipeIngredient":["1 ripe avocado","400 g black beans (rinsed and drained)","1/4 tsp cayenne pepper","2 tbsp cilantro (chopped)","2 cloves garlic (crushed)","1/4 tsp ground cumin","1 tbsp lime juice (15ml)","1 oz queso fresco (28g, or feta)","1 medium red onions (coarsely chopped)","3/4 tsp salt","2 cups spinach (55g)","2 medium sweet potatoes (500g)","3/4 cup vegetable broth (180ml)","1 tbsp vegetable oil (15ml)"],"recipeInstructions":[{"@type":"HowToStep","text":"Preheat oven to 230°C (or preheat air fryer to 200°C)."},{"@type":"HowToStep","text":"Cut sweet potatoes in half lengthwise."},{"@type":"HowToStep","text":"Toss the sweet potato halves with vegetable oil, salt, cayenne pepper, and ground cumin."},{"@type":"HowToStep","text":"Arrange cut side up and roast for about 25 minutes until fork-tender (or air fry at 200°C for 18 to 20 minutes)."},{"@type":"HowToStep","text":"Heat remaining vegetable oil in a medium skillet over medium heat."},{"@type":"HowToStep","text":"Add red onions and half of garlic and cook, stirring, until onion starts to release moisture and turns translucent, 2 to 3 minutes."},{"@type":"HowToStep","text":"Add black beans, vegetable broth, salt, remaining 1/4 tsp cayenne pepper, and remaining 1/4 tsp ground cumin."},{"@type":"HowToStep","text":"Cook until liquid is reduced and beans soften, about 10 minutes."},{"@type":"HowToStep","text":"Mash avocado and the remaining crushed garlic with a fork until smooth."},{"@type":"HowToStep","text":"Stir in cilantro, lime juice, and salt to taste."},{"@type":"HowToStep","text":"Add spinach and remaining 1 tbsp lime juice to the bean mixture in the skillet."},{"@type":"HowToStep","text":"Continue to cook until spinach wilts, about 30 seconds."},{"@type":"HowToStep","text":"Using the back of a spoon, gently push down in the center of the sweet potato halves to create a divot."},{"@type":"HowToStep","text":"Spoon the bean mixture into the sweet potato halves, then top evenly with 2 tbsp of the prepared guacamole mixture, crumbled queso fresco, and remaining 1 tbsp chopped cilantro."}],"recipeYield":"2"}</script>
 
 <div>
     <nav class="mb-4 breadcrumb print:hidden">
@@ -1033,7 +1038,7 @@
                                         <span class="font-medium">sweet potatoes</span>
                                     
                                     
-                                        <span class="text-sm text-gray-600 italic ml-1 truncate max-w-xs inline-block" title="500g" aria-label="preparation: 500g">(500g)</span>
+                                        <span class="text-sm text-gray-600 italic ml-1 break-words" aria-label="preparation: 500g">(500g)</span>
                                     
                                 </div>
                                 <span class="text-orange-700 font-semibold ml-2">
@@ -1048,7 +1053,7 @@
                                         <span class="font-medium">vegetable oil</span>
                                     
                                     
-                                        <span class="text-sm text-gray-600 italic ml-1 truncate max-w-xs inline-block" title="15ml" aria-label="preparation: 15ml">(15ml)</span>
+                                        <span class="text-sm text-gray-600 italic ml-1 break-words" aria-label="preparation: 15ml">(15ml)</span>
                                     
                                 </div>
                                 <span class="text-orange-700 font-semibold ml-2">
@@ -1073,7 +1078,7 @@
                                         <span class="font-medium">black beans</span>
                                     
                                     
-                                        <span class="text-sm text-gray-600 italic ml-1 truncate max-w-xs inline-block" title="rinsed and drained" aria-label="preparation: rinsed and drained">(rinsed and drained)</span>
+                                        <span class="text-sm text-gray-600 italic ml-1 break-words" aria-label="preparation: rinsed and drained">(rinsed and drained)</span>
                                     
                                 </div>
                                 <span class="text-orange-700 font-semibold ml-2">
@@ -1088,7 +1093,7 @@
                                         <span class="font-medium">garlic</span>
                                     
                                     
-                                        <span class="text-sm text-gray-600 italic ml-1 truncate max-w-xs inline-block" title="crushed" aria-label="preparation: crushed">(crushed)</span>
+                                        <span class="text-sm text-gray-600 italic ml-1 break-words" aria-label="preparation: crushed">(crushed)</span>
                                     
                                 </div>
                                 <span class="text-orange-700 font-semibold ml-2">
@@ -1103,7 +1108,7 @@
                                         <span class="font-medium">red onions</span>
                                     
                                     
-                                        <span class="text-sm text-gray-600 italic ml-1 truncate max-w-xs inline-block" title="coarsely chopped" aria-label="preparation: coarsely chopped">(coarsely chopped)</span>
+                                        <span class="text-sm text-gray-600 italic ml-1 break-words" aria-label="preparation: coarsely chopped">(coarsely chopped)</span>
                                     
                                 </div>
                                 <span class="text-orange-700 font-semibold ml-2">
@@ -1132,11 +1137,11 @@
                                         <span class="font-medium">vegetable broth</span>
                                     
                                     
-                                        <span class="text-sm text-gray-600 italic ml-1 truncate max-w-xs inline-block" title="180ml" aria-label="preparation: 180ml">(180ml)</span>
+                                        <span class="text-sm text-gray-600 italic ml-1 break-words" aria-label="preparation: 180ml">(180ml)</span>
                                     
                                 </div>
                                 <span class="text-orange-700 font-semibold ml-2">
-                                    3/4 c
+                                    3/4 cup
                                     
                                 </span>
                             </li>
@@ -1171,7 +1176,7 @@
                                         <span class="font-medium">cilantro</span>
                                     
                                     
-                                        <span class="text-sm text-gray-600 italic ml-1 truncate max-w-xs inline-block" title="chopped" aria-label="preparation: chopped">(chopped)</span>
+                                        <span class="text-sm text-gray-600 italic ml-1 break-words" aria-label="preparation: chopped">(chopped)</span>
                                     
                                 </div>
                                 <span class="text-orange-700 font-semibold ml-2">
@@ -1186,7 +1191,7 @@
                                         <span class="font-medium">lime juice</span>
                                     
                                     
-                                        <span class="text-sm text-gray-600 italic ml-1 truncate max-w-xs inline-block" title="15ml" aria-label="preparation: 15ml">(15ml)</span>
+                                        <span class="text-sm text-gray-600 italic ml-1 break-words" aria-label="preparation: 15ml">(15ml)</span>
                                     
                                 </div>
                                 <span class="text-orange-700 font-semibold ml-2">
@@ -1211,7 +1216,7 @@
                                         <span class="font-medium">queso fresco</span>
                                     
                                     
-                                        <span class="text-sm text-gray-600 italic ml-1 truncate max-w-xs inline-block" title="28g, or feta" aria-label="preparation: 28g, or feta">(28g, or feta)</span>
+                                        <span class="text-sm text-gray-600 italic ml-1 break-words" aria-label="preparation: 28g, or feta">(28g, or feta)</span>
                                     
                                 </div>
                                 <span class="text-orange-700 font-semibold ml-2">
@@ -1226,11 +1231,11 @@
                                         <span class="font-medium">spinach</span>
                                     
                                     
-                                        <span class="text-sm text-gray-600 italic ml-1 truncate max-w-xs inline-block" title="55g" aria-label="preparation: 55g">(55g)</span>
+                                        <span class="text-sm text-gray-600 italic ml-1 break-words" aria-label="preparation: 55g">(55g)</span>
                                     
                                 </div>
                                 <span class="text-orange-700 font-semibold ml-2">
-                                    2 c
+                                    2 cups
                                     
                                 </span>
                             </li>
@@ -1290,7 +1295,7 @@
                                                 <div class="text-sm text-gray-600 mt-2 pl-4 border-l-2 border-orange-300">
                                                     
                                                         <span class="inline-block mr-3">
-                                                            sweet potatoes: 2 medium <span class="italic text-gray-600 truncate max-w-[200px] inline-block align-bottom" title="500g" aria-label="preparation: 500g">(500g)</span>
+                                                            sweet potatoes: 2 medium <span class="italic text-gray-600 break-words" aria-label="preparation: 500g">(500g)</span>
                                                         </span>
                                                     
                                                 </div>
@@ -1325,7 +1330,7 @@
                                                 <div class="text-sm text-gray-600 mt-2 pl-4 border-l-2 border-orange-300">
                                                     
                                                         <span class="inline-block mr-3">
-                                                            vegetable oil: 1 tbsp <span class="italic text-gray-600 truncate max-w-[200px] inline-block align-bottom" title="15ml" aria-label="preparation: 15ml">(15ml)</span>,
+                                                            vegetable oil: 1 tbsp <span class="italic text-gray-600 break-words" aria-label="preparation: 15ml">(15ml)</span>,
                                                         </span>
                                                     
                                                         <span class="inline-block mr-3">
@@ -1420,11 +1425,11 @@
                                                 <div class="text-sm text-gray-600 mt-2 pl-4 border-l-2 border-orange-300">
                                                     
                                                         <span class="inline-block mr-3">
-                                                            red onions: 1 medium <span class="italic text-gray-600 truncate max-w-[200px] inline-block align-bottom" title="coarsely chopped" aria-label="preparation: coarsely chopped">(coarsely chopped)</span>,
+                                                            red onions: 1 medium <span class="italic text-gray-600 break-words" aria-label="preparation: coarsely chopped">(coarsely chopped)</span>,
                                                         </span>
                                                     
                                                         <span class="inline-block mr-3">
-                                                            garlic: 2 cloves <span class="italic text-gray-600 truncate max-w-[200px] inline-block align-bottom" title="crushed" aria-label="preparation: crushed">(crushed)</span>
+                                                            garlic: 2 cloves <span class="italic text-gray-600 break-words" aria-label="preparation: crushed">(crushed)</span>
                                                         </span>
                                                     
                                                 </div>
@@ -1457,11 +1462,11 @@
                                                 <div class="text-sm text-gray-600 mt-2 pl-4 border-l-2 border-orange-300">
                                                     
                                                         <span class="inline-block mr-3">
-                                                            black beans: 400 g <span class="italic text-gray-600 truncate max-w-[200px] inline-block align-bottom" title="rinsed and drained" aria-label="preparation: rinsed and drained">(rinsed and drained)</span>,
+                                                            black beans: 400 g <span class="italic text-gray-600 break-words" aria-label="preparation: rinsed and drained">(rinsed and drained)</span>,
                                                         </span>
                                                     
                                                         <span class="inline-block mr-3">
-                                                            vegetable broth: 3/4 c <span class="italic text-gray-600 truncate max-w-[200px] inline-block align-bottom" title="180ml" aria-label="preparation: 180ml">(180ml)</span>,
+                                                            vegetable broth: 3/4 cup <span class="italic text-gray-600 break-words" aria-label="preparation: 180ml">(180ml)</span>,
                                                         </span>
                                                     
                                                         <span class="inline-block mr-3">
@@ -1554,11 +1559,11 @@
                                                 <div class="text-sm text-gray-600 mt-2 pl-4 border-l-2 border-orange-300">
                                                     
                                                         <span class="inline-block mr-3">
-                                                            cilantro: 2 tbsp <span class="italic text-gray-600 truncate max-w-[200px] inline-block align-bottom" title="chopped" aria-label="preparation: chopped">(chopped)</span>,
+                                                            cilantro: 2 tbsp <span class="italic text-gray-600 break-words" aria-label="preparation: chopped">(chopped)</span>,
                                                         </span>
                                                     
                                                         <span class="inline-block mr-3">
-                                                            lime juice: 1 tbsp <span class="italic text-gray-600 truncate max-w-[200px] inline-block align-bottom" title="15ml" aria-label="preparation: 15ml">(15ml)</span>
+                                                            lime juice: 1 tbsp <span class="italic text-gray-600 break-words" aria-label="preparation: 15ml">(15ml)</span>
                                                         </span>
                                                     
                                                 </div>
@@ -1595,7 +1600,7 @@
                                                 <div class="text-sm text-gray-600 mt-2 pl-4 border-l-2 border-orange-300">
                                                     
                                                         <span class="inline-block mr-3">
-                                                            spinach: 2 c <span class="italic text-gray-600 truncate max-w-[200px] inline-block align-bottom" title="55g" aria-label="preparation: 55g">(55g)</span>
+                                                            spinach: 2 cups <span class="italic text-gray-600 break-words" aria-label="preparation: 55g">(55g)</span>
                                                         </span>
                                                     
                                                 </div>
@@ -1664,7 +1669,7 @@
                                                 <div class="text-sm text-gray-600 mt-2 pl-4 border-l-2 border-orange-300">
                                                     
                                                         <span class="inline-block mr-3">
-                                                            queso fresco: 1 oz <span class="italic text-gray-600 truncate max-w-[200px] inline-block align-bottom" title="28g, or feta" aria-label="preparation: 28g, or feta">(28g, or feta)</span>
+                                                            queso fresco: 1 oz <span class="italic text-gray-600 break-words" aria-label="preparation: 28g, or feta">(28g, or feta)</span>
                                                         </span>
                                                     
                                                 </div>
@@ -1683,7 +1688,7 @@
 </div>
 
 <script id="cooking-mode-data" type="application/json">
-{"image":"https://assets.epicurious.com/photos/58bdb21192eece36cc1d3f7e/1:1/w_2240,c_limit/_Stuffed-Sweet-Potatoes-03022017.jpg","name":"Stuffed Sweet Potatoes with Black Beans and Guacamole","scale":1.0,"sections":[{"ingredients":[{"name":"cayenne pepper","note":null,"quantity":"1/4","unit":"tsp"},{"name":"ground cumin","note":null,"quantity":"1/4","unit":"tsp"},{"name":"salt","note":null,"quantity":"1/2","unit":"tsp"},{"name":"sweet potatoes","note":"500g","quantity":"2","unit":"medium"},{"name":"vegetable oil","note":"15ml","quantity":"1","unit":"tbsp"}],"name":"Sweet Potatoes","stepOffset":0,"steps":[{"globalNumber":1,"image":null,"ingredients":[],"number":1,"type":"step"},{"globalNumber":2,"image":null,"ingredients":[{"name":"sweet potatoes","note":"500g","quantity":"2","unit":"medium"}],"number":2,"type":"step"},{"globalNumber":3,"image":null,"ingredients":[{"name":"vegetable oil","note":"15ml","quantity":"1","unit":"tbsp"},{"name":"salt","note":null,"quantity":"1/2","unit":"tsp"},{"name":"cayenne pepper","note":null,"quantity":"1/4","unit":"tsp"},{"name":"ground cumin","note":null,"quantity":"1/4","unit":"tsp"}],"number":3,"type":"step"},{"globalNumber":4,"image":null,"ingredients":[],"number":4,"type":"step"}]},{"ingredients":[{"name":"black beans","note":"rinsed and drained","quantity":"400","unit":"g"},{"name":"garlic","note":"crushed","quantity":"2","unit":"cloves"},{"name":"red onions","note":"coarsely chopped","quantity":"1","unit":"medium"},{"name":"salt","note":null,"quantity":"1/4","unit":"tsp"},{"name":"vegetable broth","note":"180ml","quantity":"3/4","unit":"c"}],"name":"Beans","stepOffset":4,"steps":[{"globalNumber":5,"image":null,"ingredients":[],"number":1,"type":"step"},{"globalNumber":6,"image":null,"ingredients":[{"name":"red onions","note":"coarsely chopped","quantity":"1","unit":"medium"},{"name":"garlic","note":"crushed","quantity":"2","unit":"cloves"}],"number":2,"type":"step"},{"globalNumber":7,"image":null,"ingredients":[{"name":"black beans","note":"rinsed and drained","quantity":"400","unit":"g"},{"name":"vegetable broth","note":"180ml","quantity":"3/4","unit":"c"},{"name":"salt","note":null,"quantity":"1/4","unit":"tsp"}],"number":3,"type":"step"},{"globalNumber":8,"image":null,"ingredients":[],"number":4,"type":"step"}]},{"ingredients":[{"name":"avocado","note":null,"quantity":"1","unit":"ripe"},{"name":"cilantro","note":"chopped","quantity":"2","unit":"tbsp"},{"name":"lime juice","note":"15ml","quantity":"1","unit":"tbsp"}],"name":"Guacamole","stepOffset":8,"steps":[{"globalNumber":9,"image":null,"ingredients":[{"name":"avocado","note":null,"quantity":"1","unit":"ripe"}],"number":1,"type":"step"},{"globalNumber":10,"image":null,"ingredients":[{"name":"cilantro","note":"chopped","quantity":"2","unit":"tbsp"},{"name":"lime juice","note":"15ml","quantity":"1","unit":"tbsp"}],"number":2,"type":"step"}]},{"ingredients":[{"name":"queso fresco","note":"28g, or feta","quantity":"1","unit":"oz"},{"name":"spinach","note":"55g","quantity":"2","unit":"c"}],"name":"Assembly & Serving","stepOffset":10,"steps":[{"globalNumber":11,"image":null,"ingredients":[{"name":"spinach","note":"55g","quantity":"2","unit":"c"}],"number":1,"type":"step"},{"globalNumber":12,"image":null,"ingredients":[],"number":2,"type":"step"},{"globalNumber":13,"image":null,"ingredients":[],"number":3,"type":"step"},{"globalNumber":14,"image":null,"ingredients":[{"name":"queso fresco","note":"28g, or feta","quantity":"1","unit":"oz"}],"number":4,"type":"step"}]}]}
+{"image":"https://assets.epicurious.com/photos/58bdb21192eece36cc1d3f7e/1:1/w_2240,c_limit/_Stuffed-Sweet-Potatoes-03022017.jpg","name":"Stuffed Sweet Potatoes with Black Beans and Guacamole","scale":1.0,"sections":[{"ingredients":[{"name":"cayenne pepper","note":null,"quantity":"1/4","unit":"tsp"},{"name":"ground cumin","note":null,"quantity":"1/4","unit":"tsp"},{"name":"salt","note":null,"quantity":"1/2","unit":"tsp"},{"name":"sweet potatoes","note":"500g","quantity":"2","unit":"medium"},{"name":"vegetable oil","note":"15ml","quantity":"1","unit":"tbsp"}],"name":"Sweet Potatoes","stepOffset":0,"steps":[{"globalNumber":1,"image":null,"ingredients":[],"number":1,"type":"step"},{"globalNumber":2,"image":null,"ingredients":[{"name":"sweet potatoes","note":"500g","quantity":"2","unit":"medium"}],"number":2,"type":"step"},{"globalNumber":3,"image":null,"ingredients":[{"name":"vegetable oil","note":"15ml","quantity":"1","unit":"tbsp"},{"name":"salt","note":null,"quantity":"1/2","unit":"tsp"},{"name":"cayenne pepper","note":null,"quantity":"1/4","unit":"tsp"},{"name":"ground cumin","note":null,"quantity":"1/4","unit":"tsp"}],"number":3,"type":"step"},{"globalNumber":4,"image":null,"ingredients":[],"number":4,"type":"step"}]},{"ingredients":[{"name":"black beans","note":"rinsed and drained","quantity":"400","unit":"g"},{"name":"garlic","note":"crushed","quantity":"2","unit":"cloves"},{"name":"red onions","note":"coarsely chopped","quantity":"1","unit":"medium"},{"name":"salt","note":null,"quantity":"1/4","unit":"tsp"},{"name":"vegetable broth","note":"180ml","quantity":"3/4","unit":"cup"}],"name":"Beans","stepOffset":4,"steps":[{"globalNumber":5,"image":null,"ingredients":[],"number":1,"type":"step"},{"globalNumber":6,"image":null,"ingredients":[{"name":"red onions","note":"coarsely chopped","quantity":"1","unit":"medium"},{"name":"garlic","note":"crushed","quantity":"2","unit":"cloves"}],"number":2,"type":"step"},{"globalNumber":7,"image":null,"ingredients":[{"name":"black beans","note":"rinsed and drained","quantity":"400","unit":"g"},{"name":"vegetable broth","note":"180ml","quantity":"3/4","unit":"cup"},{"name":"salt","note":null,"quantity":"1/4","unit":"tsp"}],"number":3,"type":"step"},{"globalNumber":8,"image":null,"ingredients":[],"number":4,"type":"step"}]},{"ingredients":[{"name":"avocado","note":null,"quantity":"1","unit":"ripe"},{"name":"cilantro","note":"chopped","quantity":"2","unit":"tbsp"},{"name":"lime juice","note":"15ml","quantity":"1","unit":"tbsp"}],"name":"Guacamole","stepOffset":8,"steps":[{"globalNumber":9,"image":null,"ingredients":[{"name":"avocado","note":null,"quantity":"1","unit":"ripe"}],"number":1,"type":"step"},{"globalNumber":10,"image":null,"ingredients":[{"name":"cilantro","note":"chopped","quantity":"2","unit":"tbsp"},{"name":"lime juice","note":"15ml","quantity":"1","unit":"tbsp"}],"number":2,"type":"step"}]},{"ingredients":[{"name":"queso fresco","note":"28g, or feta","quantity":"1","unit":"oz"},{"name":"spinach","note":"55g","quantity":"2","unit":"cups"}],"name":"Assembly & Serving","stepOffset":10,"steps":[{"globalNumber":11,"image":null,"ingredients":[{"name":"spinach","note":"55g","quantity":"2","unit":"cups"}],"number":1,"type":"step"},{"globalNumber":12,"image":null,"ingredients":[],"number":2,"type":"step"},{"globalNumber":13,"image":null,"ingredients":[],"number":3,"type":"step"},{"globalNumber":14,"image":null,"ingredients":[{"name":"queso fresco","note":"28g, or feta","quantity":"1","unit":"oz"}],"number":4,"type":"step"}]}]}
 </script>
 
 
@@ -1694,6 +1699,7 @@
         <footer class="mt-12 mb-6 text-center text-sm text-gray-500 print:hidden">
             Built with
             <a href="https://cooklang.org/cli/" class="text-orange-600 hover:text-orange-700 hover:underline" target="_blank" rel="noopener">CookCLI</a>
+            
         </footer>
         
     </div>

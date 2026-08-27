@@ -12,8 +12,9 @@
     <link href="../../static/css/output.css" rel="stylesheet">
     <link href="../../static/css/custom-styles.css" rel="stylesheet">
     <script>
-        // Check for saved theme preference or default to light
-        const theme = localStorage.getItem('theme') || 'light';
+        // Check for saved theme preference, or check for prefers-color-scheme, or default to light
+        const theme = localStorage.getItem('theme')
+            || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
         document.documentElement.classList.toggle('dark', theme === 'dark');
     </script>
     <style>
@@ -77,15 +78,19 @@
             border-color: #7c3aed;
         }
 
-        .dark .hover\\:text-gray-900:hover {
+        .dark .hover\:text-gray-900:hover {
             color: #f9fafb;
         }
 
-        .dark .hover\\:text-gray-800:hover {
+        .dark .hover\:text-gray-800:hover {
             color: #e5e7eb;
         }
 
-        .dark .hover\\:bg-gray-100:hover {
+        .dark .hover\:bg-gray-50:hover {
+            background-color: #374151;
+        }
+
+        .dark .hover\:bg-gray-100:hover {
             background-color: #374151;
         }
 
@@ -147,40 +152,40 @@
         }
 
         /* Dark mode hover states */
-        .dark .hover\\:bg-gradient-to-r:hover {
+        .dark .hover\:bg-gradient-to-r:hover {
             background: #374151 !important;
         }
 
-        .dark .hover\\:from-purple-50:hover,
-        .dark .hover\\:to-pink-50:hover {
+        .dark .hover\:from-purple-50:hover,
+        .dark .hover\:to-pink-50:hover {
             background: #374151 !important;
         }
 
-        .dark .hover\\:from-orange-100:hover,
-        .dark .hover\\:to-amber-100:hover {
+        .dark .hover\:from-orange-100:hover,
+        .dark .hover\:to-amber-100:hover {
             background: #374151 !important;
         }
 
-        .dark .hover\\:from-purple-100:hover,
-        .dark .hover\\:to-pink-100:hover {
+        .dark .hover\:from-purple-100:hover,
+        .dark .hover\:to-pink-100:hover {
             background: #374151 !important;
         }
 
-        .dark a.hover\\:bg-gradient-to-r:hover {
+        .dark a.hover\:bg-gradient-to-r:hover {
             background: #374151 !important;
             color: #e5e7eb !important;
         }
 
         /* Fix for navigation pill hover states */
-        .dark a[href="../../"].hover\\:bg-gradient-to-r:hover {
+        .dark a[href="../../"].hover\:bg-gradient-to-r:hover {
             background: #374151 !important;
         }
 
-        .dark .hover\\:text-orange-700:hover {
+        .dark .hover\:text-orange-700:hover {
             color: #fb923c !important;
         }
 
-        .dark .hover\\:text-purple-700:hover {
+        .dark .hover\:text-purple-700:hover {
             color: #a78bfa !important;
         }
 
@@ -204,7 +209,7 @@
             background-color: #4b5563;
         }
 
-        .dark .hover\\:bg-gray-300:hover {
+        .dark .hover\:bg-gray-300:hover {
             background-color: #6b7280;
         }
 
@@ -221,7 +226,7 @@
             color: #ef4444;
         }
 
-        .dark .hover\\:text-red-700:hover {
+        .dark .hover\:text-red-700:hover {
             color: #dc2626;
         }
 
@@ -293,7 +298,7 @@
         }
 
         /* Override inline hover styles in search results */
-        .dark #search-results a.hover\\:bg-gradient-to-r:hover {
+        .dark #search-results a.hover\:bg-gradient-to-r:hover {
             background: #374151 !important;
         }
 
@@ -472,7 +477,7 @@
             }
 
             /* Hide navigation and non-essential elements */
-            nav, #search-container, #search-input, #search-results, .print\\:hidden, .breadcrumb {
+            nav, #search-container, #search-input, #search-results, .print\:hidden, .breadcrumb {
                 display: none !important;
             }
 
@@ -515,7 +520,7 @@
             }
 
             /* Page breaks */
-            .md\\:col-span-1, .md\\:col-span-2 {
+            .md\:col-span-1, .md\:col-span-2 {
                 page-break-inside: avoid;
                 width: 100% !important;
             }
@@ -575,19 +580,19 @@
             }
 
             /* Print-specific flexbox utilities */
-            .print\\:flex-row {
+            .print\:flex-row {
                 flex-direction: row !important;
             }
 
-            .print\\:items-center {
+            .print\:items-center {
                 align-items: center !important;
             }
 
-            .print\\:block {
+            .print\:block {
                 display: block !important;
             }
 
-            .print\\:text-2xl {
+            .print\:text-2xl {
                 font-size: 1.5rem !important;
             }
 
@@ -777,7 +782,7 @@
                         <input type="text"
                                id="search-input"
                                placeholder="Search recipes..."
-                               class="w-full pl-10 pr-4 py-2.5 bg-white border-2 border-purple-200 rounded-xl text-gray-900 placeholder-gray-500 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 focus:outline-none transition-all shadow-md hover:shadow-lg">
+                               class="w-full pl-10 pr-4 py-2.5 bg-white border-2 border-purple-200 rounded-xl text-gray-900 placeholder-gray-500 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 focus:outline-hidden transition-all shadow-md hover:shadow-lg">
                         <div id="search-results"
                              class="absolute top-full mt-2 w-full bg-white border-2 border-purple-200 rounded-xl shadow-xl hidden max-h-96 overflow-y-auto"
                              style="z-index: 9999;">
@@ -845,7 +850,7 @@
 
         <main>
             
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Recipe","description":"Thick slices of soft white bread cooked until golden with a soft, custardy center.","image":"https://sallysbakingaddiction.com/wp-content/uploads/2025/12/brioche-french-toast.jpg","name":"Brioche French Toast","recipeIngredient":["berries","bread (halved witte bollen or thick brioche slices, slightly stale)","creme fraiche","4 large eggs","1/2 tsp ground cinnamon","1 tbsp maple syrup (15ml, or brown sugar/granulated sugar)","1 orange","2 tbsp salted butter","1 tsp vanilla extract (5ml)","1 c whole milk (240ml)"],"recipeInstructions":[{"@type":"HowToStep","text":"In a medium bowl, whisk the eggs."},{"@type":"HowToStep","text":"Add the whole milk, maple syrup, vanilla extract, and ground cinnamon to the bowl and whisk until fully combined and creamy."},{"@type":"HowToStep","text":"Pour the custard into a shallow dish or baking pan."},{"@type":"HowToStep","text":"Dip bread into the egg mixture to coat both sides."},{"@type":"HowToStep","text":"Melt salted butter in a large skillet over medium-low heat."},{"@type":"HowToStep","text":"Working in batches without overcrowding, add the soaked bread to the skillet and cook until golden brown, about 3 to 4 minutes."},{"@type":"HowToStep","text":"Flip and cook the other side until golden with a soft, custardy center, about 2 to 3 minutes. Add more butter to the skillet between batches as needed."},{"@type":"HowToStep","text":"If cooking in batches, transfer finished slices to a baking sheet and keep warm in an oven set to 95°C until ready to serve."},{"@type":"HowToStep","text":"Thin creme fraiche with juice from an orange. Thaw berries or macerate fresh ones with some sugar."},{"@type":"HowToStep","text":"Serve immediately topped with creme fraiche and berries."}],"recipeYield":"8"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Recipe","description":"Thick slices of soft white bread cooked until golden with a soft, custardy center.","image":"https://sallysbakingaddiction.com/wp-content/uploads/2025/12/brioche-french-toast.jpg","name":"Brioche French Toast","recipeIngredient":["berries","bread (halved witte bollen or thick brioche slices, slightly stale)","creme fraiche","4 large eggs","1/2 tsp ground cinnamon","1 tbsp maple syrup (15ml, or brown sugar/granulated sugar)","1 orange","2 tbsp salted butter","1 tsp vanilla extract (5ml)","1 cup whole milk (240ml)"],"recipeInstructions":[{"@type":"HowToStep","text":"In a medium bowl, whisk the eggs."},{"@type":"HowToStep","text":"Add the whole milk, maple syrup, vanilla extract, and ground cinnamon to the bowl and whisk until fully combined and creamy."},{"@type":"HowToStep","text":"Pour the custard into a shallow dish or baking pan."},{"@type":"HowToStep","text":"Dip bread into the egg mixture to coat both sides."},{"@type":"HowToStep","text":"Melt salted butter in a large skillet over medium-low heat."},{"@type":"HowToStep","text":"Working in batches without overcrowding, add the soaked bread to the skillet and cook until golden brown, about 3 to 4 minutes."},{"@type":"HowToStep","text":"Flip and cook the other side until golden with a soft, custardy center, about 2 to 3 minutes. Add more butter to the skillet between batches as needed."},{"@type":"HowToStep","text":"If cooking in batches, transfer finished slices to a baking sheet and keep warm in an oven set to 95°C until ready to serve."},{"@type":"HowToStep","text":"Thin creme fraiche with juice from an orange. Thaw berries or macerate fresh ones with some sugar."},{"@type":"HowToStep","text":"Serve immediately topped with creme fraiche and berries."}],"recipeYield":"8"}</script>
 
 <div>
     <nav class="mb-4 breadcrumb print:hidden">
@@ -1019,7 +1024,7 @@
                                         <span class="font-medium">maple syrup</span>
                                     
                                     
-                                        <span class="text-sm text-gray-600 italic ml-1 truncate max-w-xs inline-block" title="15ml, or brown sugar/granulated sugar" aria-label="preparation: 15ml, or brown sugar/granulated sugar">(15ml, or brown sugar/granulated sugar)</span>
+                                        <span class="text-sm text-gray-600 italic ml-1 break-words" aria-label="preparation: 15ml, or brown sugar/granulated sugar">(15ml, or brown sugar/granulated sugar)</span>
                                     
                                 </div>
                                 <span class="text-orange-700 font-semibold ml-2">
@@ -1034,7 +1039,7 @@
                                         <span class="font-medium">vanilla extract</span>
                                     
                                     
-                                        <span class="text-sm text-gray-600 italic ml-1 truncate max-w-xs inline-block" title="5ml" aria-label="preparation: 5ml">(5ml)</span>
+                                        <span class="text-sm text-gray-600 italic ml-1 break-words" aria-label="preparation: 5ml">(5ml)</span>
                                     
                                 </div>
                                 <span class="text-orange-700 font-semibold ml-2">
@@ -1049,11 +1054,11 @@
                                         <span class="font-medium">whole milk</span>
                                     
                                     
-                                        <span class="text-sm text-gray-600 italic ml-1 truncate max-w-xs inline-block" title="240ml" aria-label="preparation: 240ml">(240ml)</span>
+                                        <span class="text-sm text-gray-600 italic ml-1 break-words" aria-label="preparation: 240ml">(240ml)</span>
                                     
                                 </div>
                                 <span class="text-orange-700 font-semibold ml-2">
-                                    1 c
+                                    1 cup
                                     
                                 </span>
                             </li>
@@ -1074,7 +1079,7 @@
                                         <span class="font-medium">bread</span>
                                     
                                     
-                                        <span class="text-sm text-gray-600 italic ml-1 truncate max-w-xs inline-block" title="halved witte bollen or thick brioche slices, slightly stale" aria-label="preparation: halved witte bollen or thick brioche slices, slightly stale">(halved witte bollen or thick brioche slices, slightly stale)</span>
+                                        <span class="text-sm text-gray-600 italic ml-1 break-words" aria-label="preparation: halved witte bollen or thick brioche slices, slightly stale">(halved witte bollen or thick brioche slices, slightly stale)</span>
                                     
                                 </div>
                                 <span class="text-orange-700 font-semibold ml-2">
@@ -1222,15 +1227,15 @@
                                                 <div class="text-sm text-gray-600 mt-2 pl-4 border-l-2 border-orange-300">
                                                     
                                                         <span class="inline-block mr-3">
-                                                            whole milk: 1 c <span class="italic text-gray-600 truncate max-w-[200px] inline-block align-bottom" title="240ml" aria-label="preparation: 240ml">(240ml)</span>,
+                                                            whole milk: 1 cup <span class="italic text-gray-600 break-words" aria-label="preparation: 240ml">(240ml)</span>,
                                                         </span>
                                                     
                                                         <span class="inline-block mr-3">
-                                                            maple syrup: 1 tbsp <span class="italic text-gray-600 truncate max-w-[200px] inline-block align-bottom" title="15ml, or brown sugar/granulated sugar" aria-label="preparation: 15ml, or brown sugar/granulated sugar">(15ml, or brown sugar/granulated sugar)</span>,
+                                                            maple syrup: 1 tbsp <span class="italic text-gray-600 break-words" aria-label="preparation: 15ml, or brown sugar/granulated sugar">(15ml, or brown sugar/granulated sugar)</span>,
                                                         </span>
                                                     
                                                         <span class="inline-block mr-3">
-                                                            vanilla extract: 1 tsp <span class="italic text-gray-600 truncate max-w-[200px] inline-block align-bottom" title="5ml" aria-label="preparation: 5ml">(5ml)</span>,
+                                                            vanilla extract: 1 tsp <span class="italic text-gray-600 break-words" aria-label="preparation: 5ml">(5ml)</span>,
                                                         </span>
                                                     
                                                         <span class="inline-block mr-3">
@@ -1290,7 +1295,7 @@
                                                 <div class="text-sm text-gray-600 mt-2 pl-4 border-l-2 border-orange-300">
                                                     
                                                         <span class="inline-block mr-3">
-                                                            bread <span class="italic text-gray-600 truncate max-w-[200px] inline-block align-bottom" title="halved witte bollen or thick brioche slices, slightly stale" aria-label="preparation: halved witte bollen or thick brioche slices, slightly stale">(halved witte bollen or thick brioche slices, slightly stale)</span>
+                                                            bread <span class="italic text-gray-600 break-words" aria-label="preparation: halved witte bollen or thick brioche slices, slightly stale">(halved witte bollen or thick brioche slices, slightly stale)</span>
                                                         </span>
                                                     
                                                 </div>
@@ -1475,7 +1480,7 @@
 </div>
 
 <script id="cooking-mode-data" type="application/json">
-{"image":"https://sallysbakingaddiction.com/wp-content/uploads/2025/12/brioche-french-toast.jpg","name":"Brioche French Toast","scale":1.0,"sections":[{"ingredients":[{"name":"eggs","note":null,"quantity":"4","unit":"large"},{"name":"ground cinnamon","note":null,"quantity":"1/2","unit":"tsp"},{"name":"maple syrup","note":"15ml, or brown sugar/granulated sugar","quantity":"1","unit":"tbsp"},{"name":"vanilla extract","note":"5ml","quantity":"1","unit":"tsp"},{"name":"whole milk","note":"240ml","quantity":"1","unit":"c"}],"name":"Custard","stepOffset":0,"steps":[{"globalNumber":1,"image":null,"ingredients":[{"name":"eggs","note":null,"quantity":"4","unit":"large"}],"number":1,"type":"step"},{"globalNumber":2,"image":null,"ingredients":[{"name":"whole milk","note":"240ml","quantity":"1","unit":"c"},{"name":"maple syrup","note":"15ml, or brown sugar/granulated sugar","quantity":"1","unit":"tbsp"},{"name":"vanilla extract","note":"5ml","quantity":"1","unit":"tsp"},{"name":"ground cinnamon","note":null,"quantity":"1/2","unit":"tsp"}],"number":2,"type":"step"},{"globalNumber":3,"image":null,"ingredients":[],"number":3,"type":"step"}]},{"ingredients":[{"name":"bread","note":"halved witte bollen or thick brioche slices, slightly stale","quantity":null,"unit":null},{"name":"salted butter","note":null,"quantity":"2","unit":"tbsp"}],"name":"Assembly & Cooking","stepOffset":3,"steps":[{"globalNumber":4,"image":null,"ingredients":[{"name":"bread","note":"halved witte bollen or thick brioche slices, slightly stale","quantity":null,"unit":null}],"number":1,"type":"step"},{"globalNumber":5,"image":null,"ingredients":[{"name":"salted butter","note":null,"quantity":"2","unit":"tbsp"}],"number":2,"type":"step"},{"globalNumber":6,"image":null,"ingredients":[],"number":3,"type":"step"},{"globalNumber":7,"image":null,"ingredients":[],"number":4,"type":"step"},{"globalNumber":8,"image":null,"ingredients":[],"number":5,"type":"step"}]},{"ingredients":[{"name":"berries","note":null,"quantity":null,"unit":null},{"name":"creme fraiche","note":null,"quantity":null,"unit":null},{"name":"orange","note":null,"quantity":"1","unit":null}],"name":"Topping","stepOffset":8,"steps":[{"globalNumber":9,"image":null,"ingredients":[{"name":"creme fraiche","note":null,"quantity":null,"unit":null},{"name":"orange","note":null,"quantity":"1","unit":null},{"name":"berries","note":null,"quantity":null,"unit":null}],"number":1,"type":"step"}]},{"ingredients":[],"name":"Serving","stepOffset":9,"steps":[{"globalNumber":10,"image":null,"ingredients":[],"number":1,"type":"step"}]}]}
+{"image":"https://sallysbakingaddiction.com/wp-content/uploads/2025/12/brioche-french-toast.jpg","name":"Brioche French Toast","scale":1.0,"sections":[{"ingredients":[{"name":"eggs","note":null,"quantity":"4","unit":"large"},{"name":"ground cinnamon","note":null,"quantity":"1/2","unit":"tsp"},{"name":"maple syrup","note":"15ml, or brown sugar/granulated sugar","quantity":"1","unit":"tbsp"},{"name":"vanilla extract","note":"5ml","quantity":"1","unit":"tsp"},{"name":"whole milk","note":"240ml","quantity":"1","unit":"cup"}],"name":"Custard","stepOffset":0,"steps":[{"globalNumber":1,"image":null,"ingredients":[{"name":"eggs","note":null,"quantity":"4","unit":"large"}],"number":1,"type":"step"},{"globalNumber":2,"image":null,"ingredients":[{"name":"whole milk","note":"240ml","quantity":"1","unit":"cup"},{"name":"maple syrup","note":"15ml, or brown sugar/granulated sugar","quantity":"1","unit":"tbsp"},{"name":"vanilla extract","note":"5ml","quantity":"1","unit":"tsp"},{"name":"ground cinnamon","note":null,"quantity":"1/2","unit":"tsp"}],"number":2,"type":"step"},{"globalNumber":3,"image":null,"ingredients":[],"number":3,"type":"step"}]},{"ingredients":[{"name":"bread","note":"halved witte bollen or thick brioche slices, slightly stale","quantity":null,"unit":null},{"name":"salted butter","note":null,"quantity":"2","unit":"tbsp"}],"name":"Assembly & Cooking","stepOffset":3,"steps":[{"globalNumber":4,"image":null,"ingredients":[{"name":"bread","note":"halved witte bollen or thick brioche slices, slightly stale","quantity":null,"unit":null}],"number":1,"type":"step"},{"globalNumber":5,"image":null,"ingredients":[{"name":"salted butter","note":null,"quantity":"2","unit":"tbsp"}],"number":2,"type":"step"},{"globalNumber":6,"image":null,"ingredients":[],"number":3,"type":"step"},{"globalNumber":7,"image":null,"ingredients":[],"number":4,"type":"step"},{"globalNumber":8,"image":null,"ingredients":[],"number":5,"type":"step"}]},{"ingredients":[{"name":"berries","note":null,"quantity":null,"unit":null},{"name":"creme fraiche","note":null,"quantity":null,"unit":null},{"name":"orange","note":null,"quantity":"1","unit":null}],"name":"Topping","stepOffset":8,"steps":[{"globalNumber":9,"image":null,"ingredients":[{"name":"creme fraiche","note":null,"quantity":null,"unit":null},{"name":"orange","note":null,"quantity":"1","unit":null},{"name":"berries","note":null,"quantity":null,"unit":null}],"number":1,"type":"step"}]},{"ingredients":[],"name":"Serving","stepOffset":9,"steps":[{"globalNumber":10,"image":null,"ingredients":[],"number":1,"type":"step"}]}]}
 </script>
 
 
@@ -1486,6 +1491,7 @@
         <footer class="mt-12 mb-6 text-center text-sm text-gray-500 print:hidden">
             Built with
             <a href="https://cooklang.org/cli/" class="text-orange-600 hover:text-orange-700 hover:underline" target="_blank" rel="noopener">CookCLI</a>
+            
         </footer>
         
     </div>

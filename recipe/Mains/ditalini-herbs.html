@@ -12,8 +12,9 @@
     <link href="../../static/css/output.css" rel="stylesheet">
     <link href="../../static/css/custom-styles.css" rel="stylesheet">
     <script>
-        // Check for saved theme preference or default to light
-        const theme = localStorage.getItem('theme') || 'light';
+        // Check for saved theme preference, or check for prefers-color-scheme, or default to light
+        const theme = localStorage.getItem('theme')
+            || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
         document.documentElement.classList.toggle('dark', theme === 'dark');
     </script>
     <style>
@@ -77,15 +78,19 @@
             border-color: #7c3aed;
         }
 
-        .dark .hover\\:text-gray-900:hover {
+        .dark .hover\:text-gray-900:hover {
             color: #f9fafb;
         }
 
-        .dark .hover\\:text-gray-800:hover {
+        .dark .hover\:text-gray-800:hover {
             color: #e5e7eb;
         }
 
-        .dark .hover\\:bg-gray-100:hover {
+        .dark .hover\:bg-gray-50:hover {
+            background-color: #374151;
+        }
+
+        .dark .hover\:bg-gray-100:hover {
             background-color: #374151;
         }
 
@@ -147,40 +152,40 @@
         }
 
         /* Dark mode hover states */
-        .dark .hover\\:bg-gradient-to-r:hover {
+        .dark .hover\:bg-gradient-to-r:hover {
             background: #374151 !important;
         }
 
-        .dark .hover\\:from-purple-50:hover,
-        .dark .hover\\:to-pink-50:hover {
+        .dark .hover\:from-purple-50:hover,
+        .dark .hover\:to-pink-50:hover {
             background: #374151 !important;
         }
 
-        .dark .hover\\:from-orange-100:hover,
-        .dark .hover\\:to-amber-100:hover {
+        .dark .hover\:from-orange-100:hover,
+        .dark .hover\:to-amber-100:hover {
             background: #374151 !important;
         }
 
-        .dark .hover\\:from-purple-100:hover,
-        .dark .hover\\:to-pink-100:hover {
+        .dark .hover\:from-purple-100:hover,
+        .dark .hover\:to-pink-100:hover {
             background: #374151 !important;
         }
 
-        .dark a.hover\\:bg-gradient-to-r:hover {
+        .dark a.hover\:bg-gradient-to-r:hover {
             background: #374151 !important;
             color: #e5e7eb !important;
         }
 
         /* Fix for navigation pill hover states */
-        .dark a[href="../../"].hover\\:bg-gradient-to-r:hover {
+        .dark a[href="../../"].hover\:bg-gradient-to-r:hover {
             background: #374151 !important;
         }
 
-        .dark .hover\\:text-orange-700:hover {
+        .dark .hover\:text-orange-700:hover {
             color: #fb923c !important;
         }
 
-        .dark .hover\\:text-purple-700:hover {
+        .dark .hover\:text-purple-700:hover {
             color: #a78bfa !important;
         }
 
@@ -204,7 +209,7 @@
             background-color: #4b5563;
         }
 
-        .dark .hover\\:bg-gray-300:hover {
+        .dark .hover\:bg-gray-300:hover {
             background-color: #6b7280;
         }
 
@@ -221,7 +226,7 @@
             color: #ef4444;
         }
 
-        .dark .hover\\:text-red-700:hover {
+        .dark .hover\:text-red-700:hover {
             color: #dc2626;
         }
 
@@ -293,7 +298,7 @@
         }
 
         /* Override inline hover styles in search results */
-        .dark #search-results a.hover\\:bg-gradient-to-r:hover {
+        .dark #search-results a.hover\:bg-gradient-to-r:hover {
             background: #374151 !important;
         }
 
@@ -472,7 +477,7 @@
             }
 
             /* Hide navigation and non-essential elements */
-            nav, #search-container, #search-input, #search-results, .print\\:hidden, .breadcrumb {
+            nav, #search-container, #search-input, #search-results, .print\:hidden, .breadcrumb {
                 display: none !important;
             }
 
@@ -515,7 +520,7 @@
             }
 
             /* Page breaks */
-            .md\\:col-span-1, .md\\:col-span-2 {
+            .md\:col-span-1, .md\:col-span-2 {
                 page-break-inside: avoid;
                 width: 100% !important;
             }
@@ -575,19 +580,19 @@
             }
 
             /* Print-specific flexbox utilities */
-            .print\\:flex-row {
+            .print\:flex-row {
                 flex-direction: row !important;
             }
 
-            .print\\:items-center {
+            .print\:items-center {
                 align-items: center !important;
             }
 
-            .print\\:block {
+            .print\:block {
                 display: block !important;
             }
 
-            .print\\:text-2xl {
+            .print\:text-2xl {
                 font-size: 1.5rem !important;
             }
 
@@ -777,7 +782,7 @@
                         <input type="text"
                                id="search-input"
                                placeholder="Search recipes..."
-                               class="w-full pl-10 pr-4 py-2.5 bg-white border-2 border-purple-200 rounded-xl text-gray-900 placeholder-gray-500 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 focus:outline-none transition-all shadow-md hover:shadow-lg">
+                               class="w-full pl-10 pr-4 py-2.5 bg-white border-2 border-purple-200 rounded-xl text-gray-900 placeholder-gray-500 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 focus:outline-hidden transition-all shadow-md hover:shadow-lg">
                         <div id="search-results"
                              class="absolute top-full mt-2 w-full bg-white border-2 border-purple-200 rounded-xl shadow-xl hidden max-h-96 overflow-y-auto"
                              style="z-index: 9999;">
@@ -845,7 +850,7 @@
 
         <main>
             
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Recipe","description":"One-pot pasta dish where a mix of tender greens melt into a savory garlic-anchovy base, served over ditalini with a creamy yogurt finish.","image":"https://images.food52.com/LheLoPBFMtDxs252k8FnVBf8xYc=/cd14eff2-59b1-42a3-86a5-5253f50dc7c7--2020-1023_ditalini-herbs-chickpeas_3x2_julia-gartland_141.jpg","name":"Ditalini with Tender Herbs, Chickpeas, & Yogurt","recipeIngredient":["1/3 c Greek yogurt (80g)","3 pieces anchovy fillets","black pepper","3 c chicken stock","400 g chickpeas (drained, and rinsed)","1.5 c ditalini (140g)","3 cloves garlic (chopped)","1 lemon","salt","6 c tender greens (dill, parsley, basil, arugula, radish tops, etc.)","3 tbsp unsalted butter (42g)"],"recipeInstructions":[{"@type":"HowToStep","text":"In a small bowl, combine ditalini and chicken stock. Stir occasionally to ensure the pasta does not clump together."},{"@type":"HowToStep","text":"Melt two tablespoons of unsalted butter in a medium pot over medium heat until foamy, about 2 minutes."},{"@type":"HowToStep","text":"Add anchovy fillets and garlic. Cook, stirring often, until the anchovies melt into the fat and the garlic just begins to brown, about 3 to 5 minutes."},{"@type":"HowToStep","text":"Roughly chop tender greens and add along with chicken stock. Increase the heat to high and bring to a boil, then reduce the heat to maintain an active simmer."},{"@type":"HowToStep","text":"Stir in chickpeas. Cook, partially covered, until the liquid has reduced to about 1 cup and the greens are tender and silky, about 15 minutes. Add salt and black pepper to taste."},{"@type":"HowToStep","text":"Add the soaked pasta along with all of its remaining soaking liquid to the pot. Simmer, stirring constantly, until the pasta is al dente, about 5 minutes."},{"@type":"HowToStep","text":"Remove the pot from the heat. Stir in Greek yogurt, the remaining one tablespoon of butter, and zest and juice from lemon. Taste and adjust seasoning."}],"recipeYield":"4"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Recipe","description":"One-pot pasta dish where a mix of tender greens melt into a savory garlic-anchovy base, served over ditalini with a creamy yogurt finish.","image":"https://images.food52.com/LheLoPBFMtDxs252k8FnVBf8xYc=/cd14eff2-59b1-42a3-86a5-5253f50dc7c7--2020-1023_ditalini-herbs-chickpeas_3x2_julia-gartland_141.jpg","name":"Ditalini with Tender Herbs, Chickpeas, & Yogurt","recipeIngredient":["1/3 cup Greek yogurt (80g)","3 pieces anchovy fillets","black pepper","3 cups chicken stock","400 g chickpeas (drained, and rinsed)","1.5 cups ditalini (140g)","3 cloves garlic (chopped)","1 lemon","salt","6 cups tender greens (dill, parsley, basil, arugula, radish tops, etc.)","3 tbsp unsalted butter (42g)"],"recipeInstructions":[{"@type":"HowToStep","text":"In a small bowl, combine ditalini and chicken stock. Stir occasionally to ensure the pasta does not clump together."},{"@type":"HowToStep","text":"Melt two tablespoons of unsalted butter in a medium pot over medium heat until foamy, about 2 minutes."},{"@type":"HowToStep","text":"Add anchovy fillets and garlic. Cook, stirring often, until the anchovies melt into the fat and the garlic just begins to brown, about 3 to 5 minutes."},{"@type":"HowToStep","text":"Roughly chop tender greens and add along with chicken stock. Increase the heat to high and bring to a boil, then reduce the heat to maintain an active simmer."},{"@type":"HowToStep","text":"Stir in chickpeas. Cook, partially covered, until the liquid has reduced to about 1 cup and the greens are tender and silky, about 15 minutes. Add salt and black pepper to taste."},{"@type":"HowToStep","text":"Add the soaked pasta along with all of its remaining soaking liquid to the pot. Simmer, stirring constantly, until the pasta is al dente, about 5 minutes."},{"@type":"HowToStep","text":"Remove the pot from the heat. Stir in Greek yogurt, the remaining one tablespoon of butter, and zest and juice from lemon. Taste and adjust seasoning."}],"recipeYield":"4"}</script>
 
 <div>
     <nav class="mb-4 breadcrumb print:hidden">
@@ -994,7 +999,7 @@
                                     
                                 </div>
                                 <span class="text-orange-700 font-semibold ml-2">
-                                    1.5 c
+                                    1.5 cups
                                     
                                 </span>
                             </li>
@@ -1005,11 +1010,11 @@
                                         <span class="font-medium">ditalini</span>
                                     
                                     
-                                        <span class="text-sm text-gray-600 italic ml-1 truncate max-w-xs inline-block" title="140g" aria-label="preparation: 140g">(140g)</span>
+                                        <span class="text-sm text-gray-600 italic ml-1 break-words" aria-label="preparation: 140g">(140g)</span>
                                     
                                 </div>
                                 <span class="text-orange-700 font-semibold ml-2">
-                                    1.5 c
+                                    1.5 cups
                                     
                                 </span>
                             </li>
@@ -1061,7 +1066,7 @@
                                     
                                 </div>
                                 <span class="text-orange-700 font-semibold ml-2">
-                                    1.5 c
+                                    1.5 cups
                                     
                                 </span>
                             </li>
@@ -1072,7 +1077,7 @@
                                         <span class="font-medium">chickpeas</span>
                                     
                                     
-                                        <span class="text-sm text-gray-600 italic ml-1 truncate max-w-xs inline-block" title="drained, and rinsed" aria-label="preparation: drained, and rinsed">(drained, and rinsed)</span>
+                                        <span class="text-sm text-gray-600 italic ml-1 break-words" aria-label="preparation: drained, and rinsed">(drained, and rinsed)</span>
                                     
                                 </div>
                                 <span class="text-orange-700 font-semibold ml-2">
@@ -1087,7 +1092,7 @@
                                         <span class="font-medium">garlic</span>
                                     
                                     
-                                        <span class="text-sm text-gray-600 italic ml-1 truncate max-w-xs inline-block" title="chopped" aria-label="preparation: chopped">(chopped)</span>
+                                        <span class="text-sm text-gray-600 italic ml-1 break-words" aria-label="preparation: chopped">(chopped)</span>
                                     
                                 </div>
                                 <span class="text-orange-700 font-semibold ml-2">
@@ -1116,11 +1121,11 @@
                                         <span class="font-medium">tender greens</span>
                                     
                                     
-                                        <span class="text-sm text-gray-600 italic ml-1 truncate max-w-xs inline-block" title="dill, parsley, basil, arugula, radish tops, etc." aria-label="preparation: dill, parsley, basil, arugula, radish tops, etc.">(dill, parsley, basil, arugula, radish tops, etc.)</span>
+                                        <span class="text-sm text-gray-600 italic ml-1 break-words" aria-label="preparation: dill, parsley, basil, arugula, radish tops, etc.">(dill, parsley, basil, arugula, radish tops, etc.)</span>
                                     
                                 </div>
                                 <span class="text-orange-700 font-semibold ml-2">
-                                    6 c
+                                    6 cups
                                     
                                 </span>
                             </li>
@@ -1131,7 +1136,7 @@
                                         <span class="font-medium">unsalted butter</span>
                                     
                                     
-                                        <span class="text-sm text-gray-600 italic ml-1 truncate max-w-xs inline-block" title="42g" aria-label="preparation: 42g">(42g)</span>
+                                        <span class="text-sm text-gray-600 italic ml-1 break-words" aria-label="preparation: 42g">(42g)</span>
                                     
                                 </div>
                                 <span class="text-orange-700 font-semibold ml-2">
@@ -1156,11 +1161,11 @@
                                         <span class="font-medium">Greek yogurt</span>
                                     
                                     
-                                        <span class="text-sm text-gray-600 italic ml-1 truncate max-w-xs inline-block" title="80g" aria-label="preparation: 80g">(80g)</span>
+                                        <span class="text-sm text-gray-600 italic ml-1 break-words" aria-label="preparation: 80g">(80g)</span>
                                     
                                 </div>
                                 <span class="text-orange-700 font-semibold ml-2">
-                                    1/3 c
+                                    1/3 cup
                                     
                                 </span>
                             </li>
@@ -1217,11 +1222,11 @@
                                                 <div class="text-sm text-gray-600 mt-2 pl-4 border-l-2 border-orange-300">
                                                     
                                                         <span class="inline-block mr-3">
-                                                            ditalini: 1.5 c <span class="italic text-gray-600 truncate max-w-[200px] inline-block align-bottom" title="140g" aria-label="preparation: 140g">(140g)</span>,
+                                                            ditalini: 1.5 cups <span class="italic text-gray-600 break-words" aria-label="preparation: 140g">(140g)</span>,
                                                         </span>
                                                     
                                                         <span class="inline-block mr-3">
-                                                            chicken stock: 1.5 c
+                                                            chicken stock: 1.5 cups
                                                         </span>
                                                     
                                                 </div>
@@ -1260,7 +1265,7 @@
                                                 <div class="text-sm text-gray-600 mt-2 pl-4 border-l-2 border-orange-300">
                                                     
                                                         <span class="inline-block mr-3">
-                                                            unsalted butter: 3 tbsp <span class="italic text-gray-600 truncate max-w-[200px] inline-block align-bottom" title="42g" aria-label="preparation: 42g">(42g)</span>
+                                                            unsalted butter: 3 tbsp <span class="italic text-gray-600 break-words" aria-label="preparation: 42g">(42g)</span>
                                                         </span>
                                                     
                                                 </div>
@@ -1297,7 +1302,7 @@
                                                         </span>
                                                     
                                                         <span class="inline-block mr-3">
-                                                            garlic: 3 cloves <span class="italic text-gray-600 truncate max-w-[200px] inline-block align-bottom" title="chopped" aria-label="preparation: chopped">(chopped)</span>
+                                                            garlic: 3 cloves <span class="italic text-gray-600 break-words" aria-label="preparation: chopped">(chopped)</span>
                                                         </span>
                                                     
                                                 </div>
@@ -1328,11 +1333,11 @@
                                                 <div class="text-sm text-gray-600 mt-2 pl-4 border-l-2 border-orange-300">
                                                     
                                                         <span class="inline-block mr-3">
-                                                            tender greens: 6 c <span class="italic text-gray-600 truncate max-w-[200px] inline-block align-bottom" title="dill, parsley, basil, arugula, radish tops, etc." aria-label="preparation: dill, parsley, basil, arugula, radish tops, etc.">(dill, parsley, basil, arugula, radish tops, etc.)</span>,
+                                                            tender greens: 6 cups <span class="italic text-gray-600 break-words" aria-label="preparation: dill, parsley, basil, arugula, radish tops, etc.">(dill, parsley, basil, arugula, radish tops, etc.)</span>,
                                                         </span>
                                                     
                                                         <span class="inline-block mr-3">
-                                                            chicken stock: 1.5 c
+                                                            chicken stock: 1.5 cups
                                                         </span>
                                                     
                                                 </div>
@@ -1367,7 +1372,7 @@
                                                 <div class="text-sm text-gray-600 mt-2 pl-4 border-l-2 border-orange-300">
                                                     
                                                         <span class="inline-block mr-3">
-                                                            chickpeas: 400 g <span class="italic text-gray-600 truncate max-w-[200px] inline-block align-bottom" title="drained, and rinsed" aria-label="preparation: drained, and rinsed">(drained, and rinsed)</span>,
+                                                            chickpeas: 400 g <span class="italic text-gray-600 break-words" aria-label="preparation: drained, and rinsed">(drained, and rinsed)</span>,
                                                         </span>
                                                     
                                                         <span class="inline-block mr-3">
@@ -1435,7 +1440,7 @@
                                                 <div class="text-sm text-gray-600 mt-2 pl-4 border-l-2 border-orange-300">
                                                     
                                                         <span class="inline-block mr-3">
-                                                            Greek yogurt: 1/3 c <span class="italic text-gray-600 truncate max-w-[200px] inline-block align-bottom" title="80g" aria-label="preparation: 80g">(80g)</span>,
+                                                            Greek yogurt: 1/3 cup <span class="italic text-gray-600 break-words" aria-label="preparation: 80g">(80g)</span>,
                                                         </span>
                                                     
                                                         <span class="inline-block mr-3">
@@ -1458,7 +1463,7 @@
 </div>
 
 <script id="cooking-mode-data" type="application/json">
-{"image":"https://images.food52.com/LheLoPBFMtDxs252k8FnVBf8xYc=/cd14eff2-59b1-42a3-86a5-5253f50dc7c7--2020-1023_ditalini-herbs-chickpeas_3x2_julia-gartland_141.jpg","name":"Ditalini with Tender Herbs, Chickpeas, & Yogurt","scale":1.0,"sections":[{"ingredients":[{"name":"chicken stock","note":null,"quantity":"1.5","unit":"c"},{"name":"ditalini","note":"140g","quantity":"1.5","unit":"c"}],"name":"Pasta Soak","stepOffset":0,"steps":[{"globalNumber":1,"image":null,"ingredients":[{"name":"ditalini","note":"140g","quantity":"1.5","unit":"c"},{"name":"chicken stock","note":null,"quantity":"1.5","unit":"c"}],"number":1,"type":"step"}]},{"ingredients":[{"name":"anchovy fillets","note":null,"quantity":"3","unit":"pieces"},{"name":"black pepper","note":null,"quantity":null,"unit":null},{"name":"chicken stock","note":null,"quantity":"1.5","unit":"c"},{"name":"chickpeas","note":"drained, and rinsed","quantity":"400","unit":"g"},{"name":"garlic","note":"chopped","quantity":"3","unit":"cloves"},{"name":"salt","note":null,"quantity":null,"unit":null},{"name":"tender greens","note":"dill, parsley, basil, arugula, radish tops, etc.","quantity":"6","unit":"c"},{"name":"unsalted butter","note":"42g","quantity":"3","unit":"tbsp"}],"name":"Aromatics & Greens","stepOffset":1,"steps":[{"globalNumber":2,"image":null,"ingredients":[{"name":"unsalted butter","note":"42g","quantity":"3","unit":"tbsp"}],"number":1,"type":"step"},{"globalNumber":3,"image":null,"ingredients":[{"name":"anchovy fillets","note":null,"quantity":"3","unit":"pieces"},{"name":"garlic","note":"chopped","quantity":"3","unit":"cloves"}],"number":2,"type":"step"},{"globalNumber":4,"image":null,"ingredients":[{"name":"tender greens","note":"dill, parsley, basil, arugula, radish tops, etc.","quantity":"6","unit":"c"},{"name":"chicken stock","note":null,"quantity":"1.5","unit":"c"}],"number":3,"type":"step"},{"globalNumber":5,"image":null,"ingredients":[{"name":"chickpeas","note":"drained, and rinsed","quantity":"400","unit":"g"},{"name":"salt","note":null,"quantity":null,"unit":null},{"name":"black pepper","note":null,"quantity":null,"unit":null}],"number":4,"type":"step"}]},{"ingredients":[{"name":"Greek yogurt","note":"80g","quantity":"1/3","unit":"c"},{"name":"lemon","note":null,"quantity":"1","unit":null}],"name":"Finishing","stepOffset":5,"steps":[{"globalNumber":6,"image":null,"ingredients":[],"number":1,"type":"step"},{"globalNumber":7,"image":null,"ingredients":[{"name":"Greek yogurt","note":"80g","quantity":"1/3","unit":"c"},{"name":"lemon","note":null,"quantity":"1","unit":null}],"number":2,"type":"step"}]}]}
+{"image":"https://images.food52.com/LheLoPBFMtDxs252k8FnVBf8xYc=/cd14eff2-59b1-42a3-86a5-5253f50dc7c7--2020-1023_ditalini-herbs-chickpeas_3x2_julia-gartland_141.jpg","name":"Ditalini with Tender Herbs, Chickpeas, & Yogurt","scale":1.0,"sections":[{"ingredients":[{"name":"chicken stock","note":null,"quantity":"1.5","unit":"cups"},{"name":"ditalini","note":"140g","quantity":"1.5","unit":"cups"}],"name":"Pasta Soak","stepOffset":0,"steps":[{"globalNumber":1,"image":null,"ingredients":[{"name":"ditalini","note":"140g","quantity":"1.5","unit":"cups"},{"name":"chicken stock","note":null,"quantity":"1.5","unit":"cups"}],"number":1,"type":"step"}]},{"ingredients":[{"name":"anchovy fillets","note":null,"quantity":"3","unit":"pieces"},{"name":"black pepper","note":null,"quantity":null,"unit":null},{"name":"chicken stock","note":null,"quantity":"1.5","unit":"cups"},{"name":"chickpeas","note":"drained, and rinsed","quantity":"400","unit":"g"},{"name":"garlic","note":"chopped","quantity":"3","unit":"cloves"},{"name":"salt","note":null,"quantity":null,"unit":null},{"name":"tender greens","note":"dill, parsley, basil, arugula, radish tops, etc.","quantity":"6","unit":"cups"},{"name":"unsalted butter","note":"42g","quantity":"3","unit":"tbsp"}],"name":"Aromatics & Greens","stepOffset":1,"steps":[{"globalNumber":2,"image":null,"ingredients":[{"name":"unsalted butter","note":"42g","quantity":"3","unit":"tbsp"}],"number":1,"type":"step"},{"globalNumber":3,"image":null,"ingredients":[{"name":"anchovy fillets","note":null,"quantity":"3","unit":"pieces"},{"name":"garlic","note":"chopped","quantity":"3","unit":"cloves"}],"number":2,"type":"step"},{"globalNumber":4,"image":null,"ingredients":[{"name":"tender greens","note":"dill, parsley, basil, arugula, radish tops, etc.","quantity":"6","unit":"cups"},{"name":"chicken stock","note":null,"quantity":"1.5","unit":"cups"}],"number":3,"type":"step"},{"globalNumber":5,"image":null,"ingredients":[{"name":"chickpeas","note":"drained, and rinsed","quantity":"400","unit":"g"},{"name":"salt","note":null,"quantity":null,"unit":null},{"name":"black pepper","note":null,"quantity":null,"unit":null}],"number":4,"type":"step"}]},{"ingredients":[{"name":"Greek yogurt","note":"80g","quantity":"1/3","unit":"cup"},{"name":"lemon","note":null,"quantity":"1","unit":null}],"name":"Finishing","stepOffset":5,"steps":[{"globalNumber":6,"image":null,"ingredients":[],"number":1,"type":"step"},{"globalNumber":7,"image":null,"ingredients":[{"name":"Greek yogurt","note":"80g","quantity":"1/3","unit":"cup"},{"name":"lemon","note":null,"quantity":"1","unit":null}],"number":2,"type":"step"}]}]}
 </script>
 
 
@@ -1469,6 +1474,7 @@
         <footer class="mt-12 mb-6 text-center text-sm text-gray-500 print:hidden">
             Built with
             <a href="https://cooklang.org/cli/" class="text-orange-600 hover:text-orange-700 hover:underline" target="_blank" rel="noopener">CookCLI</a>
+            
         </footer>
         
     </div>

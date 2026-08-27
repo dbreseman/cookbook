@@ -12,8 +12,9 @@
     <link href="../../static/css/output.css" rel="stylesheet">
     <link href="../../static/css/custom-styles.css" rel="stylesheet">
     <script>
-        // Check for saved theme preference or default to light
-        const theme = localStorage.getItem('theme') || 'light';
+        // Check for saved theme preference, or check for prefers-color-scheme, or default to light
+        const theme = localStorage.getItem('theme')
+            || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
         document.documentElement.classList.toggle('dark', theme === 'dark');
     </script>
     <style>
@@ -77,15 +78,19 @@
             border-color: #7c3aed;
         }
 
-        .dark .hover\\:text-gray-900:hover {
+        .dark .hover\:text-gray-900:hover {
             color: #f9fafb;
         }
 
-        .dark .hover\\:text-gray-800:hover {
+        .dark .hover\:text-gray-800:hover {
             color: #e5e7eb;
         }
 
-        .dark .hover\\:bg-gray-100:hover {
+        .dark .hover\:bg-gray-50:hover {
+            background-color: #374151;
+        }
+
+        .dark .hover\:bg-gray-100:hover {
             background-color: #374151;
         }
 
@@ -147,40 +152,40 @@
         }
 
         /* Dark mode hover states */
-        .dark .hover\\:bg-gradient-to-r:hover {
+        .dark .hover\:bg-gradient-to-r:hover {
             background: #374151 !important;
         }
 
-        .dark .hover\\:from-purple-50:hover,
-        .dark .hover\\:to-pink-50:hover {
+        .dark .hover\:from-purple-50:hover,
+        .dark .hover\:to-pink-50:hover {
             background: #374151 !important;
         }
 
-        .dark .hover\\:from-orange-100:hover,
-        .dark .hover\\:to-amber-100:hover {
+        .dark .hover\:from-orange-100:hover,
+        .dark .hover\:to-amber-100:hover {
             background: #374151 !important;
         }
 
-        .dark .hover\\:from-purple-100:hover,
-        .dark .hover\\:to-pink-100:hover {
+        .dark .hover\:from-purple-100:hover,
+        .dark .hover\:to-pink-100:hover {
             background: #374151 !important;
         }
 
-        .dark a.hover\\:bg-gradient-to-r:hover {
+        .dark a.hover\:bg-gradient-to-r:hover {
             background: #374151 !important;
             color: #e5e7eb !important;
         }
 
         /* Fix for navigation pill hover states */
-        .dark a[href="../../"].hover\\:bg-gradient-to-r:hover {
+        .dark a[href="../../"].hover\:bg-gradient-to-r:hover {
             background: #374151 !important;
         }
 
-        .dark .hover\\:text-orange-700:hover {
+        .dark .hover\:text-orange-700:hover {
             color: #fb923c !important;
         }
 
-        .dark .hover\\:text-purple-700:hover {
+        .dark .hover\:text-purple-700:hover {
             color: #a78bfa !important;
         }
 
@@ -204,7 +209,7 @@
             background-color: #4b5563;
         }
 
-        .dark .hover\\:bg-gray-300:hover {
+        .dark .hover\:bg-gray-300:hover {
             background-color: #6b7280;
         }
 
@@ -221,7 +226,7 @@
             color: #ef4444;
         }
 
-        .dark .hover\\:text-red-700:hover {
+        .dark .hover\:text-red-700:hover {
             color: #dc2626;
         }
 
@@ -293,7 +298,7 @@
         }
 
         /* Override inline hover styles in search results */
-        .dark #search-results a.hover\\:bg-gradient-to-r:hover {
+        .dark #search-results a.hover\:bg-gradient-to-r:hover {
             background: #374151 !important;
         }
 
@@ -472,7 +477,7 @@
             }
 
             /* Hide navigation and non-essential elements */
-            nav, #search-container, #search-input, #search-results, .print\\:hidden, .breadcrumb {
+            nav, #search-container, #search-input, #search-results, .print\:hidden, .breadcrumb {
                 display: none !important;
             }
 
@@ -515,7 +520,7 @@
             }
 
             /* Page breaks */
-            .md\\:col-span-1, .md\\:col-span-2 {
+            .md\:col-span-1, .md\:col-span-2 {
                 page-break-inside: avoid;
                 width: 100% !important;
             }
@@ -575,19 +580,19 @@
             }
 
             /* Print-specific flexbox utilities */
-            .print\\:flex-row {
+            .print\:flex-row {
                 flex-direction: row !important;
             }
 
-            .print\\:items-center {
+            .print\:items-center {
                 align-items: center !important;
             }
 
-            .print\\:block {
+            .print\:block {
                 display: block !important;
             }
 
-            .print\\:text-2xl {
+            .print\:text-2xl {
                 font-size: 1.5rem !important;
             }
 
@@ -777,7 +782,7 @@
                         <input type="text"
                                id="search-input"
                                placeholder="Search recipes..."
-                               class="w-full pl-10 pr-4 py-2.5 bg-white border-2 border-purple-200 rounded-xl text-gray-900 placeholder-gray-500 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 focus:outline-none transition-all shadow-md hover:shadow-lg">
+                               class="w-full pl-10 pr-4 py-2.5 bg-white border-2 border-purple-200 rounded-xl text-gray-900 placeholder-gray-500 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 focus:outline-hidden transition-all shadow-md hover:shadow-lg">
                         <div id="search-results"
                              class="absolute top-full mt-2 w-full bg-white border-2 border-purple-200 rounded-xl shadow-xl hidden max-h-96 overflow-y-auto"
                              style="z-index: 9999;">
@@ -845,7 +850,7 @@
 
         <main>
             
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Recipe","description":"Layered, aromatic rice and meat dish.","image":"https://images.stockcake.com/public/4/d/b/4dbeb9f6-2f1d-4874-b254-53f228f33619_large/biryani-with-raita-stockcake.jpg","name":"Biryani","recipeIngredient":["3 tbsp Bombay Biryani Masala (Shan brand)","2.5 c basmati rice (500g)","2 bay leaf","1 pod, 1 black cardamom","300 g cauliflower (florets)","4 tbsp cilantro","2 cinnamon stick","4 tbsp cream (60ml)","1 tbsp cumin seeds","4 tbsp dried cranberries","1 batch fried-shallots","2 tbsp ginger-garlic paste","200 g green beans (chopped)","4 pods green cardamom","1/2 lemon lemon juice","800 g meat (goat, lamb, or chicken thighs, skinless and bone-in)","4 tbsp mint","3 potatoes (Yukon Gold)","300 g red onions (finely diced)","1 pinch saffron","11 tsp salt (10g)","300 g tomatoes (finely diced)","1 tsp turmeric (2g)","9 c water (240ml)","3 tbsp white vinegar","1/2 c yogurt (120g)"],"recipeInstructions":[{"@type":"HowToStep","text":"Make 1 batch fried-shallots."},{"@type":"HowToStep","text":"Peel and quarter potatoes. Return reserved shallot oil to pot, place over high heat, and cook potatoes until golden brown. Remove potatoes and set oil aside."},{"@type":"HowToStep","text":"In a large bowl, combine meat with yogurt, lemon juice, turmeric, Bombay Biryani Masala, and salt. Let marinate for at least 30 minutes."},{"@type":"HowToStep","text":"In a dutch oven, add 1/4 cup of the reserved shallot oil and saute red onions until translucent. Add ginger-garlic paste, cinnamon stick, black cardamom, bay leaf, and tomatoes. Cook on medium-low until the oil starts to separate."},{"@type":"HowToStep","text":"Add meat and marinade and cook until tender—about 30 minutes for chicken and 2 hours for goat or lamb. If using goat or lamb, add water at this step. Taste and adjust flavoring as needed."},{"@type":"HowToStep","text":"Add fried potatoes, cauliflower, green beans, and dried cranberries for the last 10 minutes."},{"@type":"HowToStep","text":"Rinse basmati rice until clear, then soak for 10 to 20 minutes. Meanwhile, boil water in a separate pot along with bay leaf, black cardamom, green cardamom, cinnamon stick, and cumin seeds."},{"@type":"HowToStep","text":"Once vigorously boiling, add white vinegar, salt, and rice. Cook until the pot comes back to a boil and the rice is about 70% done, 8 minutes (the grains should be softened on the outside but still have a firm, hard core when bitten into). Drain and rinse in cold water. Set aside."},{"@type":"HowToStep","text":"Grind saffron in a mortar and pestle to a powder, then add to a bowl with cream. Microwave until well infused."},{"@type":"HowToStep","text":"Chiffonade cilantro and mint."},{"@type":"HowToStep","text":"Preheat oven to 170°C."},{"@type":"HowToStep","text":"Now layer the biryani: spread half of the saffron cream on the bottom of the dutch oven, then top with a thin layer of rice. Then add the meat and vegetables, then the rice, herbs, and half the fried shallots in a couple layers. Thin out remaining saffron cream with some water and sprinkle on top of the rice."},{"@type":"HowToStep","text":"Set it on high for the first 5 to 10 minutes uncovered, then cover and transfer to preheated oven. Let bake for 20 minutes, then remove and let sit for 10 minutes."},{"@type":"HowToStep","text":"Serve with cucumber-pomegranate raita and remaining fried shallots."}],"recipeYield":"8"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Recipe","description":"Layered, aromatic rice and meat dish.","image":"https://images.stockcake.com/public/4/d/b/4dbeb9f6-2f1d-4874-b254-53f228f33619_large/biryani-with-raita-stockcake.jpg","name":"Biryani","recipeIngredient":["3 tbsp Bombay Biryani Masala (Shan brand)","2.5 cups basmati rice (500g)","2 bay leaf","1, 1 pod black cardamom","300 g cauliflower (florets)","1/4 cup cilantro","2 cinnamon stick","1/4 cup cream (60ml)","1 tbsp cumin seeds","1/4 cup dried cranberries","1 batch fried-shallots","2 tbsp ginger-garlic paste","200 g green beans (chopped)","4 pods green cardamom","1/2 lemon lemon juice","800 g meat (goat, lamb, or chicken thighs, skinless and bone-in)","1/4 cup mint","3 potatoes (Yukon Gold)","300 g red onions (finely diced)","1 pinch saffron","3 tbsp, 2 tsp salt (10g)","300 g tomatoes (finely diced)","1 tsp turmeric (2g)","1 cup, 8 cups water (240ml)","3 tbsp white vinegar","1/2 cup yogurt (120g)"],"recipeInstructions":[{"@type":"HowToStep","text":"Make 1 batch fried-shallots."},{"@type":"HowToStep","text":"Peel and quarter potatoes. Return reserved shallot oil to pot, place over high heat, and cook potatoes until golden brown. Remove potatoes and set oil aside."},{"@type":"HowToStep","text":"In a large bowl, combine meat with yogurt, lemon juice, turmeric, Bombay Biryani Masala, and salt. Let marinate for at least 30 minutes."},{"@type":"HowToStep","text":"In a dutch oven, add 1/4 cup of the reserved shallot oil and saute red onions until translucent. Add ginger-garlic paste, cinnamon stick, black cardamom, bay leaf, and tomatoes. Cook on medium-low until the oil starts to separate."},{"@type":"HowToStep","text":"Add meat and marinade and cook until tender—about 30 minutes for chicken and 2 hours for goat or lamb. If using goat or lamb, add water at this step. Taste and adjust flavoring as needed."},{"@type":"HowToStep","text":"Add fried potatoes, cauliflower, green beans, and dried cranberries for the last 10 minutes."},{"@type":"HowToStep","text":"Rinse basmati rice until clear, then soak for 10 to 20 minutes. Meanwhile, boil water in a separate pot along with bay leaf, black cardamom, green cardamom, cinnamon stick, and cumin seeds."},{"@type":"HowToStep","text":"Once vigorously boiling, add white vinegar, salt, and rice. Cook until the pot comes back to a boil and the rice is about 70% done, 8 minutes (the grains should be softened on the outside but still have a firm, hard core when bitten into). Drain and rinse in cold water. Set aside."},{"@type":"HowToStep","text":"Grind saffron in a mortar and pestle to a powder, then add to a bowl with cream. Microwave until well infused."},{"@type":"HowToStep","text":"Chiffonade cilantro and mint."},{"@type":"HowToStep","text":"Preheat oven to 170°C."},{"@type":"HowToStep","text":"Now layer the biryani: spread half of the saffron cream on the bottom of the dutch oven, then top with a thin layer of rice. Then add the meat and vegetables, then the rice, herbs, and half the fried shallots in a couple layers. Thin out remaining saffron cream with some water and sprinkle on top of the rice."},{"@type":"HowToStep","text":"Set it on high for the first 5 to 10 minutes uncovered, then cover and transfer to preheated oven. Let bake for 20 minutes, then remove and let sit for 10 minutes."},{"@type":"HowToStep","text":"Serve with cucumber-pomegranate raita and remaining fried shallots."}],"recipeYield":"8"}</script>
 
 <div>
     <nav class="mb-4 breadcrumb print:hidden">
@@ -1011,7 +1016,7 @@
                                         <span class="font-medium">potatoes</span>
                                     
                                     
-                                        <span class="text-sm text-gray-600 italic ml-1 truncate max-w-xs inline-block" title="Yukon Gold" aria-label="preparation: Yukon Gold">(Yukon Gold)</span>
+                                        <span class="text-sm text-gray-600 italic ml-1 break-words" aria-label="preparation: Yukon Gold">(Yukon Gold)</span>
                                     
                                 </div>
                                 <span class="text-orange-700 font-semibold ml-2">
@@ -1036,7 +1041,7 @@
                                         <span class="font-medium">Bombay Biryani Masala</span>
                                     
                                     
-                                        <span class="text-sm text-gray-600 italic ml-1 truncate max-w-xs inline-block" title="Shan brand" aria-label="preparation: Shan brand">(Shan brand)</span>
+                                        <span class="text-sm text-gray-600 italic ml-1 break-words" aria-label="preparation: Shan brand">(Shan brand)</span>
                                     
                                 </div>
                                 <span class="text-orange-700 font-semibold ml-2">
@@ -1065,7 +1070,7 @@
                                         <span class="font-medium">meat</span>
                                     
                                     
-                                        <span class="text-sm text-gray-600 italic ml-1 truncate max-w-xs inline-block" title="goat, lamb, or chicken thighs, skinless and bone-in" aria-label="preparation: goat, lamb, or chicken thighs, skinless and bone-in">(goat, lamb, or chicken thighs, skinless and bone-in)</span>
+                                        <span class="text-sm text-gray-600 italic ml-1 break-words" aria-label="preparation: goat, lamb, or chicken thighs, skinless and bone-in">(goat, lamb, or chicken thighs, skinless and bone-in)</span>
                                     
                                 </div>
                                 <span class="text-orange-700 font-semibold ml-2">
@@ -1080,7 +1085,7 @@
                                         <span class="font-medium">salt</span>
                                     
                                     
-                                        <span class="text-sm text-gray-600 italic ml-1 truncate max-w-xs inline-block" title="10g" aria-label="preparation: 10g">(10g)</span>
+                                        <span class="text-sm text-gray-600 italic ml-1 break-words" aria-label="preparation: 10g">(10g)</span>
                                     
                                 </div>
                                 <span class="text-orange-700 font-semibold ml-2">
@@ -1095,7 +1100,7 @@
                                         <span class="font-medium">turmeric</span>
                                     
                                     
-                                        <span class="text-sm text-gray-600 italic ml-1 truncate max-w-xs inline-block" title="2g" aria-label="preparation: 2g">(2g)</span>
+                                        <span class="text-sm text-gray-600 italic ml-1 break-words" aria-label="preparation: 2g">(2g)</span>
                                     
                                 </div>
                                 <span class="text-orange-700 font-semibold ml-2">
@@ -1110,11 +1115,11 @@
                                         <span class="font-medium">yogurt</span>
                                     
                                     
-                                        <span class="text-sm text-gray-600 italic ml-1 truncate max-w-xs inline-block" title="120g" aria-label="preparation: 120g">(120g)</span>
+                                        <span class="text-sm text-gray-600 italic ml-1 break-words" aria-label="preparation: 120g">(120g)</span>
                                     
                                 </div>
                                 <span class="text-orange-700 font-semibold ml-2">
-                                    1/2 c
+                                    1/2 cup
                                     
                                 </span>
                             </li>
@@ -1163,7 +1168,7 @@
                                         <span class="font-medium">cauliflower</span>
                                     
                                     
-                                        <span class="text-sm text-gray-600 italic ml-1 truncate max-w-xs inline-block" title="florets" aria-label="preparation: florets">(florets)</span>
+                                        <span class="text-sm text-gray-600 italic ml-1 break-words" aria-label="preparation: florets">(florets)</span>
                                     
                                 </div>
                                 <span class="text-orange-700 font-semibold ml-2">
@@ -1195,7 +1200,7 @@
                                     
                                 </div>
                                 <span class="text-orange-700 font-semibold ml-2">
-                                    4 tbsp
+                                    1/4 cup
                                     
                                 </span>
                             </li>
@@ -1220,7 +1225,7 @@
                                         <span class="font-medium">green beans</span>
                                     
                                     
-                                        <span class="text-sm text-gray-600 italic ml-1 truncate max-w-xs inline-block" title="chopped" aria-label="preparation: chopped">(chopped)</span>
+                                        <span class="text-sm text-gray-600 italic ml-1 break-words" aria-label="preparation: chopped">(chopped)</span>
                                     
                                 </div>
                                 <span class="text-orange-700 font-semibold ml-2">
@@ -1235,7 +1240,7 @@
                                         <span class="font-medium">red onions</span>
                                     
                                     
-                                        <span class="text-sm text-gray-600 italic ml-1 truncate max-w-xs inline-block" title="finely diced" aria-label="preparation: finely diced">(finely diced)</span>
+                                        <span class="text-sm text-gray-600 italic ml-1 break-words" aria-label="preparation: finely diced">(finely diced)</span>
                                     
                                 </div>
                                 <span class="text-orange-700 font-semibold ml-2">
@@ -1250,7 +1255,7 @@
                                         <span class="font-medium">tomatoes</span>
                                     
                                     
-                                        <span class="text-sm text-gray-600 italic ml-1 truncate max-w-xs inline-block" title="finely diced" aria-label="preparation: finely diced">(finely diced)</span>
+                                        <span class="text-sm text-gray-600 italic ml-1 break-words" aria-label="preparation: finely diced">(finely diced)</span>
                                     
                                 </div>
                                 <span class="text-orange-700 font-semibold ml-2">
@@ -1265,11 +1270,11 @@
                                         <span class="font-medium">water</span>
                                     
                                     
-                                        <span class="text-sm text-gray-600 italic ml-1 truncate max-w-xs inline-block" title="240ml" aria-label="preparation: 240ml">(240ml)</span>
+                                        <span class="text-sm text-gray-600 italic ml-1 break-words" aria-label="preparation: 240ml">(240ml)</span>
                                     
                                 </div>
                                 <span class="text-orange-700 font-semibold ml-2">
-                                    1 c
+                                    1 cup
                                     
                                 </span>
                             </li>
@@ -1290,11 +1295,11 @@
                                         <span class="font-medium">basmati rice</span>
                                     
                                     
-                                        <span class="text-sm text-gray-600 italic ml-1 truncate max-w-xs inline-block" title="500g" aria-label="preparation: 500g">(500g)</span>
+                                        <span class="text-sm text-gray-600 italic ml-1 break-words" aria-label="preparation: 500g">(500g)</span>
                                     
                                 </div>
                                 <span class="text-orange-700 font-semibold ml-2">
-                                    2.5 c
+                                    2.5 cups
                                     
                                 </span>
                             </li>
@@ -1392,7 +1397,7 @@
                                     
                                 </div>
                                 <span class="text-orange-700 font-semibold ml-2">
-                                    8 c
+                                    8 cups
                                     
                                 </span>
                             </li>
@@ -1430,7 +1435,7 @@
                                     
                                 </div>
                                 <span class="text-orange-700 font-semibold ml-2">
-                                    4 tbsp
+                                    1/4 cup
                                     
                                 </span>
                             </li>
@@ -1441,11 +1446,11 @@
                                         <span class="font-medium">cream</span>
                                     
                                     
-                                        <span class="text-sm text-gray-600 italic ml-1 truncate max-w-xs inline-block" title="60ml" aria-label="preparation: 60ml">(60ml)</span>
+                                        <span class="text-sm text-gray-600 italic ml-1 break-words" aria-label="preparation: 60ml">(60ml)</span>
                                     
                                 </div>
                                 <span class="text-orange-700 font-semibold ml-2">
-                                    4 tbsp
+                                    1/4 cup
                                     
                                 </span>
                             </li>
@@ -1459,7 +1464,7 @@
                                     
                                 </div>
                                 <span class="text-orange-700 font-semibold ml-2">
-                                    4 tbsp
+                                    1/4 cup
                                     
                                 </span>
                             </li>
@@ -1547,7 +1552,7 @@
                                                 <div class="text-sm text-gray-600 mt-2 pl-4 border-l-2 border-orange-300">
                                                     
                                                         <span class="inline-block mr-3">
-                                                            potatoes: 3 <span class="italic text-gray-600 truncate max-w-[200px] inline-block align-bottom" title="Yukon Gold" aria-label="preparation: Yukon Gold">(Yukon Gold)</span>
+                                                            potatoes: 3 <span class="italic text-gray-600 break-words" aria-label="preparation: Yukon Gold">(Yukon Gold)</span>
                                                         </span>
                                                     
                                                 </div>
@@ -1596,11 +1601,11 @@
                                                 <div class="text-sm text-gray-600 mt-2 pl-4 border-l-2 border-orange-300">
                                                     
                                                         <span class="inline-block mr-3">
-                                                            meat: 800 g <span class="italic text-gray-600 truncate max-w-[200px] inline-block align-bottom" title="goat, lamb, or chicken thighs, skinless and bone-in" aria-label="preparation: goat, lamb, or chicken thighs, skinless and bone-in">(goat, lamb, or chicken thighs, skinless and bone-in)</span>,
+                                                            meat: 800 g <span class="italic text-gray-600 break-words" aria-label="preparation: goat, lamb, or chicken thighs, skinless and bone-in">(goat, lamb, or chicken thighs, skinless and bone-in)</span>,
                                                         </span>
                                                     
                                                         <span class="inline-block mr-3">
-                                                            yogurt: 1/2 c <span class="italic text-gray-600 truncate max-w-[200px] inline-block align-bottom" title="120g" aria-label="preparation: 120g">(120g)</span>,
+                                                            yogurt: 1/2 cup <span class="italic text-gray-600 break-words" aria-label="preparation: 120g">(120g)</span>,
                                                         </span>
                                                     
                                                         <span class="inline-block mr-3">
@@ -1608,15 +1613,15 @@
                                                         </span>
                                                     
                                                         <span class="inline-block mr-3">
-                                                            turmeric: 1 tsp <span class="italic text-gray-600 truncate max-w-[200px] inline-block align-bottom" title="2g" aria-label="preparation: 2g">(2g)</span>,
+                                                            turmeric: 1 tsp <span class="italic text-gray-600 break-words" aria-label="preparation: 2g">(2g)</span>,
                                                         </span>
                                                     
                                                         <span class="inline-block mr-3">
-                                                            Bombay Biryani Masala: 3 tbsp <span class="italic text-gray-600 truncate max-w-[200px] inline-block align-bottom" title="Shan brand" aria-label="preparation: Shan brand">(Shan brand)</span>,
+                                                            Bombay Biryani Masala: 3 tbsp <span class="italic text-gray-600 break-words" aria-label="preparation: Shan brand">(Shan brand)</span>,
                                                         </span>
                                                     
                                                         <span class="inline-block mr-3">
-                                                            salt: 2 tsp <span class="italic text-gray-600 truncate max-w-[200px] inline-block align-bottom" title="10g" aria-label="preparation: 10g">(10g)</span>
+                                                            salt: 2 tsp <span class="italic text-gray-600 break-words" aria-label="preparation: 10g">(10g)</span>
                                                         </span>
                                                     
                                                 </div>
@@ -1663,7 +1668,7 @@
                                                 <div class="text-sm text-gray-600 mt-2 pl-4 border-l-2 border-orange-300">
                                                     
                                                         <span class="inline-block mr-3">
-                                                            red onions: 300 g <span class="italic text-gray-600 truncate max-w-[200px] inline-block align-bottom" title="finely diced" aria-label="preparation: finely diced">(finely diced)</span>,
+                                                            red onions: 300 g <span class="italic text-gray-600 break-words" aria-label="preparation: finely diced">(finely diced)</span>,
                                                         </span>
                                                     
                                                         <span class="inline-block mr-3">
@@ -1683,7 +1688,7 @@
                                                         </span>
                                                     
                                                         <span class="inline-block mr-3">
-                                                            tomatoes: 300 g <span class="italic text-gray-600 truncate max-w-[200px] inline-block align-bottom" title="finely diced" aria-label="preparation: finely diced">(finely diced)</span>
+                                                            tomatoes: 300 g <span class="italic text-gray-600 break-words" aria-label="preparation: finely diced">(finely diced)</span>
                                                         </span>
                                                     
                                                 </div>
@@ -1716,7 +1721,7 @@
                                                 <div class="text-sm text-gray-600 mt-2 pl-4 border-l-2 border-orange-300">
                                                     
                                                         <span class="inline-block mr-3">
-                                                            water: 1 c <span class="italic text-gray-600 truncate max-w-[200px] inline-block align-bottom" title="240ml" aria-label="preparation: 240ml">(240ml)</span>
+                                                            water: 1 cup <span class="italic text-gray-600 break-words" aria-label="preparation: 240ml">(240ml)</span>
                                                         </span>
                                                     
                                                 </div>
@@ -1751,15 +1756,15 @@
                                                 <div class="text-sm text-gray-600 mt-2 pl-4 border-l-2 border-orange-300">
                                                     
                                                         <span class="inline-block mr-3">
-                                                            cauliflower: 300 g <span class="italic text-gray-600 truncate max-w-[200px] inline-block align-bottom" title="florets" aria-label="preparation: florets">(florets)</span>,
+                                                            cauliflower: 300 g <span class="italic text-gray-600 break-words" aria-label="preparation: florets">(florets)</span>,
                                                         </span>
                                                     
                                                         <span class="inline-block mr-3">
-                                                            green beans: 200 g <span class="italic text-gray-600 truncate max-w-[200px] inline-block align-bottom" title="chopped" aria-label="preparation: chopped">(chopped)</span>,
+                                                            green beans: 200 g <span class="italic text-gray-600 break-words" aria-label="preparation: chopped">(chopped)</span>,
                                                         </span>
                                                     
                                                         <span class="inline-block mr-3">
-                                                            dried cranberries: 4 tbsp
+                                                            dried cranberries: 1/4 cup
                                                         </span>
                                                     
                                                 </div>
@@ -1810,11 +1815,11 @@
                                                 <div class="text-sm text-gray-600 mt-2 pl-4 border-l-2 border-orange-300">
                                                     
                                                         <span class="inline-block mr-3">
-                                                            basmati rice: 2.5 c <span class="italic text-gray-600 truncate max-w-[200px] inline-block align-bottom" title="500g" aria-label="preparation: 500g">(500g)</span>,
+                                                            basmati rice: 2.5 cups <span class="italic text-gray-600 break-words" aria-label="preparation: 500g">(500g)</span>,
                                                         </span>
                                                     
                                                         <span class="inline-block mr-3">
-                                                            water: 8 c,
+                                                            water: 8 cups,
                                                         </span>
                                                     
                                                         <span class="inline-block mr-3">
@@ -1914,7 +1919,7 @@
                                                         </span>
                                                     
                                                         <span class="inline-block mr-3">
-                                                            cream: 4 tbsp <span class="italic text-gray-600 truncate max-w-[200px] inline-block align-bottom" title="60ml" aria-label="preparation: 60ml">(60ml)</span>
+                                                            cream: 1/4 cup <span class="italic text-gray-600 break-words" aria-label="preparation: 60ml">(60ml)</span>
                                                         </span>
                                                     
                                                 </div>
@@ -1945,11 +1950,11 @@
                                                 <div class="text-sm text-gray-600 mt-2 pl-4 border-l-2 border-orange-300">
                                                     
                                                         <span class="inline-block mr-3">
-                                                            cilantro: 4 tbsp,
+                                                            cilantro: 1/4 cup,
                                                         </span>
                                                     
                                                         <span class="inline-block mr-3">
-                                                            mint: 4 tbsp
+                                                            mint: 1/4 cup
                                                         </span>
                                                     
                                                 </div>
@@ -2066,7 +2071,7 @@
 </div>
 
 <script id="cooking-mode-data" type="application/json">
-{"image":"https://images.stockcake.com/public/4/d/b/4dbeb9f6-2f1d-4874-b254-53f228f33619_large/biryani-with-raita-stockcake.jpg","name":"Biryani","scale":1.0,"sections":[{"ingredients":[{"name":"fried-shallots","note":null,"quantity":"1","unit":"batch"},{"name":"potatoes","note":"Yukon Gold","quantity":"3","unit":null}],"name":"Fried Shallots & Potatoes","stepOffset":0,"steps":[{"globalNumber":1,"image":null,"ingredients":[{"name":"fried-shallots","note":null,"quantity":"1","unit":"batch"}],"number":1,"type":"step"},{"globalNumber":2,"image":null,"ingredients":[{"name":"potatoes","note":"Yukon Gold","quantity":"3","unit":null}],"number":2,"type":"step"}]},{"ingredients":[{"name":"Bombay Biryani Masala","note":"Shan brand","quantity":"3","unit":"tbsp"},{"name":"lemon juice","note":null,"quantity":"1/2","unit":"lemon"},{"name":"meat","note":"goat, lamb, or chicken thighs, skinless and bone-in","quantity":"800","unit":"g"},{"name":"salt","note":"10g","quantity":"2","unit":"tsp"},{"name":"turmeric","note":"2g","quantity":"1","unit":"tsp"},{"name":"yogurt","note":"120g","quantity":"1/2","unit":"c"}],"name":"Marinade","stepOffset":2,"steps":[{"globalNumber":3,"image":null,"ingredients":[{"name":"meat","note":"goat, lamb, or chicken thighs, skinless and bone-in","quantity":"800","unit":"g"},{"name":"yogurt","note":"120g","quantity":"1/2","unit":"c"},{"name":"lemon juice","note":null,"quantity":"1/2","unit":"lemon"},{"name":"turmeric","note":"2g","quantity":"1","unit":"tsp"},{"name":"Bombay Biryani Masala","note":"Shan brand","quantity":"3","unit":"tbsp"},{"name":"salt","note":"10g","quantity":"2","unit":"tsp"}],"number":1,"type":"step"}]},{"ingredients":[{"name":"bay leaf","note":null,"quantity":"1","unit":null},{"name":"black cardamom","note":null,"quantity":"1","unit":null},{"name":"cauliflower","note":"florets","quantity":"300","unit":"g"},{"name":"cinnamon stick","note":null,"quantity":"1","unit":null},{"name":"dried cranberries","note":null,"quantity":"4","unit":"tbsp"},{"name":"ginger-garlic paste","note":null,"quantity":"2","unit":"tbsp"},{"name":"green beans","note":"chopped","quantity":"200","unit":"g"},{"name":"red onions","note":"finely diced","quantity":"300","unit":"g"},{"name":"tomatoes","note":"finely diced","quantity":"300","unit":"g"},{"name":"water","note":"240ml","quantity":"1","unit":"c"}],"name":"Meat & Vegetables","stepOffset":3,"steps":[{"globalNumber":4,"image":null,"ingredients":[{"name":"red onions","note":"finely diced","quantity":"300","unit":"g"},{"name":"ginger-garlic paste","note":null,"quantity":"2","unit":"tbsp"},{"name":"cinnamon stick","note":null,"quantity":"1","unit":null},{"name":"black cardamom","note":null,"quantity":"1","unit":null},{"name":"bay leaf","note":null,"quantity":"1","unit":null},{"name":"tomatoes","note":"finely diced","quantity":"300","unit":"g"}],"number":1,"type":"step"},{"globalNumber":5,"image":null,"ingredients":[{"name":"water","note":"240ml","quantity":"1","unit":"c"}],"number":2,"type":"step"},{"globalNumber":6,"image":null,"ingredients":[{"name":"cauliflower","note":"florets","quantity":"300","unit":"g"},{"name":"green beans","note":"chopped","quantity":"200","unit":"g"},{"name":"dried cranberries","note":null,"quantity":"4","unit":"tbsp"}],"number":3,"type":"step"}]},{"ingredients":[{"name":"basmati rice","note":"500g","quantity":"2.5","unit":"c"},{"name":"bay leaf","note":null,"quantity":"1","unit":null},{"name":"black cardamom","note":null,"quantity":"1","unit":"pod"},{"name":"cinnamon stick","note":null,"quantity":"1","unit":null},{"name":"cumin seeds","note":null,"quantity":"1","unit":"tbsp"},{"name":"green cardamom","note":null,"quantity":"4","unit":"pods"},{"name":"salt","note":null,"quantity":"3","unit":"tbsp"},{"name":"water","note":null,"quantity":"8","unit":"c"},{"name":"white vinegar","note":null,"quantity":"3","unit":"tbsp"}],"name":"Rice","stepOffset":6,"steps":[{"globalNumber":7,"image":null,"ingredients":[{"name":"basmati rice","note":"500g","quantity":"2.5","unit":"c"},{"name":"water","note":null,"quantity":"8","unit":"c"},{"name":"bay leaf","note":null,"quantity":"1","unit":null},{"name":"black cardamom","note":null,"quantity":"1","unit":"pod"},{"name":"green cardamom","note":null,"quantity":"4","unit":"pods"},{"name":"cinnamon stick","note":null,"quantity":"1","unit":null},{"name":"cumin seeds","note":null,"quantity":"1","unit":"tbsp"}],"number":1,"type":"step"},{"globalNumber":8,"image":null,"ingredients":[{"name":"white vinegar","note":null,"quantity":"3","unit":"tbsp"},{"name":"salt","note":null,"quantity":"3","unit":"tbsp"}],"number":2,"type":"step"}]},{"ingredients":[{"name":"cilantro","note":null,"quantity":"4","unit":"tbsp"},{"name":"cream","note":"60ml","quantity":"4","unit":"tbsp"},{"name":"mint","note":null,"quantity":"4","unit":"tbsp"},{"name":"saffron","note":null,"quantity":"1","unit":"pinch"}],"name":"Saffron Cream & Herbs","stepOffset":8,"steps":[{"globalNumber":9,"image":null,"ingredients":[{"name":"saffron","note":null,"quantity":"1","unit":"pinch"},{"name":"cream","note":"60ml","quantity":"4","unit":"tbsp"}],"number":1,"type":"step"},{"globalNumber":10,"image":null,"ingredients":[{"name":"cilantro","note":null,"quantity":"4","unit":"tbsp"},{"name":"mint","note":null,"quantity":"4","unit":"tbsp"}],"number":2,"type":"step"}]},{"ingredients":[],"name":"Layering & Baking","stepOffset":10,"steps":[{"globalNumber":11,"image":null,"ingredients":[],"number":1,"type":"step"},{"globalNumber":12,"image":null,"ingredients":[],"number":2,"type":"step"},{"globalNumber":13,"image":null,"ingredients":[],"number":3,"type":"step"}]},{"ingredients":[],"name":"Serving","stepOffset":13,"steps":[{"globalNumber":14,"image":null,"ingredients":[],"number":1,"type":"step"}]}]}
+{"image":"https://images.stockcake.com/public/4/d/b/4dbeb9f6-2f1d-4874-b254-53f228f33619_large/biryani-with-raita-stockcake.jpg","name":"Biryani","scale":1.0,"sections":[{"ingredients":[{"name":"fried-shallots","note":null,"quantity":"1","unit":"batch"},{"name":"potatoes","note":"Yukon Gold","quantity":"3","unit":null}],"name":"Fried Shallots & Potatoes","stepOffset":0,"steps":[{"globalNumber":1,"image":null,"ingredients":[{"name":"fried-shallots","note":null,"quantity":"1","unit":"batch"}],"number":1,"type":"step"},{"globalNumber":2,"image":null,"ingredients":[{"name":"potatoes","note":"Yukon Gold","quantity":"3","unit":null}],"number":2,"type":"step"}]},{"ingredients":[{"name":"Bombay Biryani Masala","note":"Shan brand","quantity":"3","unit":"tbsp"},{"name":"lemon juice","note":null,"quantity":"1/2","unit":"lemon"},{"name":"meat","note":"goat, lamb, or chicken thighs, skinless and bone-in","quantity":"800","unit":"g"},{"name":"salt","note":"10g","quantity":"2","unit":"tsp"},{"name":"turmeric","note":"2g","quantity":"1","unit":"tsp"},{"name":"yogurt","note":"120g","quantity":"1/2","unit":"cup"}],"name":"Marinade","stepOffset":2,"steps":[{"globalNumber":3,"image":null,"ingredients":[{"name":"meat","note":"goat, lamb, or chicken thighs, skinless and bone-in","quantity":"800","unit":"g"},{"name":"yogurt","note":"120g","quantity":"1/2","unit":"cup"},{"name":"lemon juice","note":null,"quantity":"1/2","unit":"lemon"},{"name":"turmeric","note":"2g","quantity":"1","unit":"tsp"},{"name":"Bombay Biryani Masala","note":"Shan brand","quantity":"3","unit":"tbsp"},{"name":"salt","note":"10g","quantity":"2","unit":"tsp"}],"number":1,"type":"step"}]},{"ingredients":[{"name":"bay leaf","note":null,"quantity":"1","unit":null},{"name":"black cardamom","note":null,"quantity":"1","unit":null},{"name":"cauliflower","note":"florets","quantity":"300","unit":"g"},{"name":"cinnamon stick","note":null,"quantity":"1","unit":null},{"name":"dried cranberries","note":null,"quantity":"1/4","unit":"cup"},{"name":"ginger-garlic paste","note":null,"quantity":"2","unit":"tbsp"},{"name":"green beans","note":"chopped","quantity":"200","unit":"g"},{"name":"red onions","note":"finely diced","quantity":"300","unit":"g"},{"name":"tomatoes","note":"finely diced","quantity":"300","unit":"g"},{"name":"water","note":"240ml","quantity":"1","unit":"cup"}],"name":"Meat & Vegetables","stepOffset":3,"steps":[{"globalNumber":4,"image":null,"ingredients":[{"name":"red onions","note":"finely diced","quantity":"300","unit":"g"},{"name":"ginger-garlic paste","note":null,"quantity":"2","unit":"tbsp"},{"name":"cinnamon stick","note":null,"quantity":"1","unit":null},{"name":"black cardamom","note":null,"quantity":"1","unit":null},{"name":"bay leaf","note":null,"quantity":"1","unit":null},{"name":"tomatoes","note":"finely diced","quantity":"300","unit":"g"}],"number":1,"type":"step"},{"globalNumber":5,"image":null,"ingredients":[{"name":"water","note":"240ml","quantity":"1","unit":"cup"}],"number":2,"type":"step"},{"globalNumber":6,"image":null,"ingredients":[{"name":"cauliflower","note":"florets","quantity":"300","unit":"g"},{"name":"green beans","note":"chopped","quantity":"200","unit":"g"},{"name":"dried cranberries","note":null,"quantity":"1/4","unit":"cup"}],"number":3,"type":"step"}]},{"ingredients":[{"name":"basmati rice","note":"500g","quantity":"2.5","unit":"cups"},{"name":"bay leaf","note":null,"quantity":"1","unit":null},{"name":"black cardamom","note":null,"quantity":"1","unit":"pod"},{"name":"cinnamon stick","note":null,"quantity":"1","unit":null},{"name":"cumin seeds","note":null,"quantity":"1","unit":"tbsp"},{"name":"green cardamom","note":null,"quantity":"4","unit":"pods"},{"name":"salt","note":null,"quantity":"3","unit":"tbsp"},{"name":"water","note":null,"quantity":"8","unit":"cups"},{"name":"white vinegar","note":null,"quantity":"3","unit":"tbsp"}],"name":"Rice","stepOffset":6,"steps":[{"globalNumber":7,"image":null,"ingredients":[{"name":"basmati rice","note":"500g","quantity":"2.5","unit":"cups"},{"name":"water","note":null,"quantity":"8","unit":"cups"},{"name":"bay leaf","note":null,"quantity":"1","unit":null},{"name":"black cardamom","note":null,"quantity":"1","unit":"pod"},{"name":"green cardamom","note":null,"quantity":"4","unit":"pods"},{"name":"cinnamon stick","note":null,"quantity":"1","unit":null},{"name":"cumin seeds","note":null,"quantity":"1","unit":"tbsp"}],"number":1,"type":"step"},{"globalNumber":8,"image":null,"ingredients":[{"name":"white vinegar","note":null,"quantity":"3","unit":"tbsp"},{"name":"salt","note":null,"quantity":"3","unit":"tbsp"}],"number":2,"type":"step"}]},{"ingredients":[{"name":"cilantro","note":null,"quantity":"1/4","unit":"cup"},{"name":"cream","note":"60ml","quantity":"1/4","unit":"cup"},{"name":"mint","note":null,"quantity":"1/4","unit":"cup"},{"name":"saffron","note":null,"quantity":"1","unit":"pinch"}],"name":"Saffron Cream & Herbs","stepOffset":8,"steps":[{"globalNumber":9,"image":null,"ingredients":[{"name":"saffron","note":null,"quantity":"1","unit":"pinch"},{"name":"cream","note":"60ml","quantity":"1/4","unit":"cup"}],"number":1,"type":"step"},{"globalNumber":10,"image":null,"ingredients":[{"name":"cilantro","note":null,"quantity":"1/4","unit":"cup"},{"name":"mint","note":null,"quantity":"1/4","unit":"cup"}],"number":2,"type":"step"}]},{"ingredients":[],"name":"Layering & Baking","stepOffset":10,"steps":[{"globalNumber":11,"image":null,"ingredients":[],"number":1,"type":"step"},{"globalNumber":12,"image":null,"ingredients":[],"number":2,"type":"step"},{"globalNumber":13,"image":null,"ingredients":[],"number":3,"type":"step"}]},{"ingredients":[],"name":"Serving","stepOffset":13,"steps":[{"globalNumber":14,"image":null,"ingredients":[],"number":1,"type":"step"}]}]}
 </script>
 
 
@@ -2077,6 +2082,7 @@
         <footer class="mt-12 mb-6 text-center text-sm text-gray-500 print:hidden">
             Built with
             <a href="https://cooklang.org/cli/" class="text-orange-600 hover:text-orange-700 hover:underline" target="_blank" rel="noopener">CookCLI</a>
+            
         </footer>
         
     </div>
